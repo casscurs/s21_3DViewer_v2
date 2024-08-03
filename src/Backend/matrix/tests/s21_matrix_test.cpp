@@ -1,6 +1,6 @@
 /* Copyright [2024] <Casscurs> */
 
-#include "./s21_matrix_test.h"
+#include "./s21_matrix_test.hpp"
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

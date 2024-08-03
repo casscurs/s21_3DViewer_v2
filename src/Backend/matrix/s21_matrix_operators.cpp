@@ -1,6 +1,6 @@
 /* Copyright [2024] <Casscurs> */
 
-#include "./s21_matrix_oop.h"
+#include "./s21_matrix_oop.hpp"
 
 S21Matrix& S21Matrix::operator=(S21Matrix other) {
   swap(other);

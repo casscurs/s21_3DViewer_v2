@@ -1,6 +1,6 @@
 /* Copyright [2024] <Casscurs> */
 
-#include "./s21_matrix_oop.h"
+#include "./s21_matrix_oop.hpp"
 
 bool S21Matrix::EqMatrix(const S21Matrix& other) const noexcept {
   if (!size_check(other)) return false;

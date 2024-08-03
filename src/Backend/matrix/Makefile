@@ -54,6 +54,8 @@ $(NAME) : $(OBJ_FILES)
 
 -include $(DEP_FILES)
 
+obj : $(OBJ_FILES)
+
 leaks: test
 	leaks -atExit -- ./test
 

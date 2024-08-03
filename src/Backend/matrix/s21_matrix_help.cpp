@@ -1,6 +1,6 @@
 /* Copyright [2024] <Casscurs> */
 
-#include "./s21_matrix_oop.h"
+#include "./s21_matrix_oop.hpp"
 
 void S21Matrix::freeMatrix() {
   for (int i = 0; i != rows_; ++i) {

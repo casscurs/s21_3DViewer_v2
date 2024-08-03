@@ -1,7 +1,7 @@
 /* Copyright [2024] <Casscurs> */
 
-#ifndef S21_MATRIX_OOP_H
-#define S21_MATRIX_OOP_H
+#ifndef DESKTOP_CPP1_S21_MATRIXPLUS_1_SRC_S21_MATRIX_OOP_HPP_
+#define DESKTOP_CPP1_S21_MATRIXPLUS_1_SRC_S21_MATRIX_OOP_HPP_
 
 #include <exception>
 #include <iostream>
@@ -64,4 +64,4 @@ class S21Matrix {
   void find_minor(int i, int j, const S21Matrix& A, const S21Matrix& buf) const;
 };
 
-#endif  // S21_MATRIX_OOP_H
+#endif  // DESKTOP_CPP1_S21_MATRIXPLUS_1_SRC_S21_MATRIX_OOP_HPP_

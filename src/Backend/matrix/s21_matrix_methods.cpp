@@ -1,6 +1,6 @@
 /* Copyright [2024] <Casscurs> */
 
-#include "./s21_matrix_oop.h"
+#include "./s21_matrix_oop.hpp"
 
 /* Конструктор по умолчанию */
 S21Matrix::S21Matrix() noexcept : rows_(0), cols_(0), matrix_(nullptr) {}

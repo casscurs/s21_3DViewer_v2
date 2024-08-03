@@ -1,6 +1,6 @@
 /* Copyright [2024] <Casscurs> */
 
-#include "./s21_matrix_test.h"
+#include "./s21_matrix_test.hpp"
 
 TEST(Constructor_basic, test_1) {
   S21Matrix a;

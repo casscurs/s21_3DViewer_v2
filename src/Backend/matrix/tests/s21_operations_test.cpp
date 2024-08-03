@@ -1,6 +1,6 @@
 /* Copyright [2024] <Casscurs> */
 
-#include "./s21_matrix_test.h"
+#include "./s21_matrix_test.hpp"
 
 TEST(operation_EqMatrix, test_1) {
   S21Matrix M(3, 3);
