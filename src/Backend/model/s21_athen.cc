@@ -1,12 +1,8 @@
 #include "./s21_model.h"
 
 namespace s21 {
-/*!
-    \brief Сдвиг модели на а по оси координат
-*/
-void ProductModel::Movement(
-    const double a,
-    const char flag) noexcept {  // сдвиг на a по оси flag
+
+void ProductModel::Movement(const double a, const char flag) noexcept {
   switch (flag) {
     case 'x':
       for (int i = 0; i != matrix.get_rows(); ++i) matrix(i, 0) += a;
@@ -20,16 +16,8 @@ void ProductModel::Movement(
   }
 }
 
-/*!
-    \brief Масштабирование в а раз
-*/
-void ProductModel::Mult(const double a) {  // масштаб (умножение в a раз)
-  this->matrix *= a;
-}
+void ProductModel::Mult(const double a) { this->matrix *= a; }
 
-/*!
-    \brief В рамки f
-*/
 void ProductModel::ResizeFrames(const double f) {
   double max = fabs(range_x[1] - range_x[0]);
   if (fabs(range_y[1] - range_y[0]) > max) max = fabs(range_y[1] - range_y[0]);
@@ -37,11 +25,8 @@ void ProductModel::ResizeFrames(const double f) {
 
   double scale = (f - (f * (-1))) / max;
   Mult(scale);
-}  // в рамки f
+}
 
-/*!
-    \brief Центрирование
-*/
 void ProductModel::CenterFrames() noexcept {
   double center_x = range_x[0] + (range_x[1] - range_x[0]) / 2;
   double center_y = range_y[0] + (range_y[1] - range_y[0]) / 2;
@@ -52,7 +37,7 @@ void ProductModel::CenterFrames() noexcept {
     matrix(i, 1) -= center_y;
     matrix(i, 2) -= center_z;
   }
-}  // центрирование координат
+}
 
 /*!
     \brief Поворот на угол по вокруг оси координат

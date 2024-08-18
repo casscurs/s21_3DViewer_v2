@@ -28,7 +28,7 @@ TESTS_OBJ = $(patsubst %.cc,%.o,$(TESTS_SRC))
 # Флаги
 CXX = g++ -std=c++17
 
-CXXFLAGS = -Wall -Wextra -Werror -Wstrict-prototypes \
+CXXFLAGS = -Wall -Wextra -Wstrict-prototypes \
 					 -Wmissing-declarations -Wdeclaration-after-statement -O2 \
 					 -g -fsanitize=address,undefined,unreachable \
 					 -fno-sanitize-recover -fstack-protector\

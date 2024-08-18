@@ -22,7 +22,7 @@ void BuilderFromObjFile::ObjCounter() {
 
   if (vertex_counter == 0) throw std::ios_base::failure("no vertex in file");
 
-  model_ptr->facets.reserve(facets_counter);
+  model_ptr->facets.resize(facets_counter);
   model_ptr->matrix.set_rows(vertex_counter);
 }
 
@@ -30,6 +30,7 @@ void BuilderFromObjFile::MatrixFill() {
   int flag = 0;
   std::FILE *file = std::fopen(file_name, "r");
   if (!file) throw std::ios_base::failure("file does not open");
+
   char *str = nullptr;
   size_t len = 0;
   int vertex_counter = 0, facets_counter = 0;
@@ -52,7 +53,8 @@ void BuilderFromObjFile::MatrixFill() {
       int tmp = 0;
       for (int i = 0; *(str + i) != '\n'; ++i)
         if (*(str + i) == ' ') ++tmp;
-      model_ptr->facets[facets_counter].reserve(tmp);
+      model_ptr->facets[facets_counter].resize(tmp);
+
       tmp = 0;
       strtok(str, " \n");
       istr = strtok(NULL, " \n");
@@ -95,6 +97,7 @@ void BuilderFromObjFile::MinMax(int vertex_counter) {
 
 void BuilderFromObjFile::CreateModel() {
   Reset();
+  model_ptr = std::make_shared<ProductModel>();
   ObjCounter();
   MatrixFill();
 }
