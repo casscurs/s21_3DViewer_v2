@@ -17,8 +17,8 @@ TESTS_HEADERS = $(wildcard $(TESTS_DIR)*.hpp)
 TESTS_OBJ = $(patsubst %.cpp,%.o, $(TESTS_SRC))
 
 CC = g++
-CFLAGS = -std=c++17 -Wall -Wextra -Werror -pedantic -g -I /opt/homebrew/Cellar/googletest/1.14.0/include -fsanitize=address,undefined,unreachable \
--fno-sanitize-recover
+CFLAGS = -std=c++17 -Wall -Wextra -Werror -pedantic -g -I /opt/homebrew/Cellar/googletest/1.14.0/include # -fsanitize=address,undefined,unreachable \
+# -fno-sanitize-recover
 
 AR = ar rcs 
 LIBS = -L/opt/homebrew/Cellar/googletest/1.14.0/lib -lgtest_main -lgtest -lpthread

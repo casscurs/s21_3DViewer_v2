@@ -30,8 +30,9 @@ CXX = g++ -std=c++17
 
 CXXFLAGS = -Wall -Wextra -Wstrict-prototypes \
 					 -Wmissing-declarations -Wdeclaration-after-statement -O2 \
-					 -g -fsanitize=address,undefined,unreachable \
-					 -fno-sanitize-recover -fstack-protector\
+					 -g 
+					 # -fsanitize=address,undefined,unreachable \
+					 # -fno-sanitize-recover -fstack-protector\
 
 AR = ar rcs
 LIBS = -lgtest
@@ -102,7 +103,7 @@ matrix_lib:
 matrix_lib_clean:
 	@$(MAKE) -C ./Backend/matrix -f Makefile clean
 
-clean : uninstall undvi distclean
+clean : uninstall undvi distclean matrix_lib_clean
 	@echo "$(COLOR_TITLE)=== Cleaning ===$(COLOR_RESET)"
 	@rm -rf *.a *.o gcovr *.gcda *.gcno $(DEP_FILES) $(NAME) test
 	@rm -rf ./Backend/model/model_tests/*.d ./Backend/model/model_tests/*.o ./Backend/model/model_tests/*.gcda ./Backend/model/model_tests/*.gcno
