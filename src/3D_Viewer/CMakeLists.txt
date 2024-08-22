@@ -31,11 +31,11 @@ include_directories(
 )
 
 set(PROJECT_SOURCES
-    main.cpp
-    mainwindow.cpp
+    main.cc
+    mainwindow.cc
     mainwindow.h
     mainwindow.ui
-    display.cpp
+    display.cc
     display.h
     giflib/dgif_lib.c
     giflib/egif_lib.c
@@ -51,12 +51,12 @@ set(PROJECT_SOURCES
     gifimage/qgifimage_p.h
     gifimage/qgifimage.h
     gifimage/qgifimage.cpp
-    controller.cpp
+    controller.cc
     controller.h
-    preferences.cpp
+    preferences.cc
     preferences.h
     preferences.ui
-    interactions.cpp
+    interactions.cc
     interactions.h
     interactions.ui
 
