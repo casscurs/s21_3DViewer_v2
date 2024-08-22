@@ -1,7 +1,7 @@
 #Makefile by Casscurs Hunturek
 
 PROJECT_NAME = 3DViewer
-VERSION = 1.0
+VERSION = 2.0
 
 # Цвета для оформления вывода
 COLOR_TITLE = \033[1;36m
@@ -9,32 +9,34 @@ COLOR_SUCCESS = \033[1;32m
 COLOR_RESET = \033[0m
 # Исходники
 NAME = viewer.a
-SRC_FILES = $(wildcard ./Backend/*.c)
-HEADER_FILES = $(wildcard ./Backend/*.h)
-OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
-DEP_FILES = $(patsubst %.c, %.d, $(SRC_FILES))
-CPP_FILES = $(wildcard ./3D_Viewer/*.cpp)
+
+SRC_FILES = $(wildcard ./Backend/model/*.cc) 
+HEADER_FILES = $(wildcard ./Backend/model/*.h)
+
+OBJ_FILES = $(patsubst %.cc, %.o, $(SRC_FILES))
+DEP_FILES = $(patsubst %.cc, %.d, $(SRC_FILES))
+
+MATRIX_OBJ_FILES = $(wildcard ./Backend/matrix/*.o)
+
+CPP_FILES = $(wildcard ./3D_Viewer/*.cc)
 CPP_HEADERS = $(wildcard ./3D_Viewer/*.h)
 # Тесты
-TESTS_DIR = Backend/tests/
-TESTS_SRC = $(wildcard $(TESTS_DIR)*.c)
-TESTS_OBJ = $(patsubst %.c,%.o,$(TESTS_SRC))
+TESTS_DIR = Backend/model/model_tests/
+TESTS_SRC = $(wildcard $(TESTS_DIR)*.cc)
+TESTS_OBJ = $(patsubst %.cc,%.o,$(TESTS_SRC))
 # Флаги
-CC = gcc
-CFLAGS = -Wall -Wextra -O2 -std=c11
-#-g -fsanitize=address,undefined,unreachable -fno-sanitize-recover -fstack-protector
+CXX = g++ -std=c++17
+CXXFLAGS = -Wall -Wextra -O2
+
 AR = ar rcs
-LIBS = -lcheck
-COVERAGE =
+LIBS = -lgtest
 # Документация .dvi
-DVI_TARGET = doc.dvi
-TEXI2DVI = texi2dvi
 SRC_DIR = documentation
 # Дистрибутируемый архив 
 DIST_DIR = dist/$(PROJECT_NAME)-$(VERSION)
 DIST_FILES = $(SRC_FILES) $(HEADER_FILES) $(CPP_FILES) $(CPP_HEADERS) $(TESTS_SRC) $(SRC_DIR)/html/index.html Makefile
 
-all : install
+all : install matrix_lib_clean matrix_lib
 
 txt:
 	mv models/katana.txt models/katana.obj
@@ -60,17 +62,22 @@ gcov_report: clean add_coverage tests
 add_coverage:
 	$(eval COVERAGE += --coverage)
 
-tests: $(NAME) $(TESTS_OBJ)
-	$(CC) $(CFLAGS) $(COVERAGE) $(TESTS_OBJ) $(LIBS) $(NAME) -o $@
-	./tests
+test: $(NAME) $(TESTS_OBJ)
+	$(CXX) $(CXXFLAGS) $(TESTS_OBJ) $(LIBS) $(NAME) -o $@
+	./test
 
 $(NAME) : $(OBJ_FILES)
-	  $(AR) $(NAME) $?
-	 # $(CC) -o $(NAME) $?
+	$(AR) $(NAME) $(MATRIX_OBJ_FILES) $?
 	@echo "$(COLOR_SUCCESS)=== Build complete ===$(COLOR_RESET)"
 
-%.o : %.c
-	$(CC) $(CFLAGS) $(COVERAGE) -c $< -o $@ -MMD
+%.o : %.cc
+	$(CXX) $(CXXFLAGS) -c $< -o $@ -MMD
+
+matrix_lib:
+	@$(MAKE) -C ./Backend/matrix -f Makefile obj
+
+matrix_lib_clean:
+	@$(MAKE) -C ./Backend/matrix -f Makefile clean
 
 include $(wildcard $(D_FILES))
 
@@ -103,11 +110,11 @@ dist: dvi
 distclean:
 	@rm -rf dist
 
-clean : uninstall undvi distclean
+clean : uninstall undvi distclean matrix_lib_clean
 	@echo "$(COLOR_TITLE)=== Cleaning ===$(COLOR_RESET)"
-	@rm -rf *.a *.o report *.gcda *.gcno $(DEP_FILES) $(NAME) tests
-	@rm -rf Backend/tests/*.d Backend/tests/*.o Backend/tests/*.gcda Backend/tests/*.gcno
-	@rm -rf Backend/*.o Backend/*.gcda Backend/*.gcno
+	@rm -rf *.a *.o gcovr *.gcda *.gcno $(DEP_FILES) $(NAME) test
+	@rm -rf ./Backend/model/model_tests/*.d ./Backend/model/model_tests/*.o ./Backend/model/model_tests/*.gcda ./Backend/model/model_tests/*.gcno
+	@rm -rf ./Backend/model/*.d ./Backend/model/*.o ./Backend/model/*.gcda ./Backend/model/*.gcno
 
 cppcheck :
 	@echo "$(COLOR_TITLE)=== Running cppcheck ===$(COLOR_RESET)"
@@ -122,4 +129,4 @@ check-format :
 	@echo "$(COLOR_TITLE)=== Checking code formatting ===$(COLOR_RESET)"
 	clang-format -n -style=Google $(SRC_FILES) $(HEADER_FILES) $(CPP_FILES) $(CPP_HEADERS) $(TESTS_SRC)
 
-.PHONY : all clean cppcheck cpplint format check-format dvi undvi dist distclean start tests
+.PHONY : all clean cppcheck cpplint format check-format dvi undvi dist distclean start tests matrix_lib matrix_lib_clean
