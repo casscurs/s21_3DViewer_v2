@@ -36,7 +36,7 @@ SRC_DIR = documentation
 DIST_DIR = dist/$(PROJECT_NAME)-$(VERSION)
 DIST_FILES = $(SRC_FILES) $(HEADER_FILES) $(CPP_FILES) $(CPP_HEADERS) $(TESTS_SRC) $(SRC_DIR)/html/index.html Makefile
 
-all : install matrix_lib_clean matrix_lib
+all : install matrix_lib_clean
 
 txt:
 	mv models/katana.txt models/katana.obj
@@ -47,27 +47,21 @@ txt:
 	mv Backend/tests/nenormal.txt Backend/tests/nenormal.obj
 	mv Backend/tests/normal.txt Backend/tests/normal.obj
 
-gcov_report: clean add_coverage tests
-	@echo "$(COLOR_TITLE)=== Running tests ===$(COLOR_RESET)"
-	./tests
-	@echo "$(COLOR_TITLE)=====================$(COLOR_RESET)"
-	mkdir -p report
-	lcov -o report/test.info -c -d .
-	genhtml -o report report/test.info
-	@rm -rf *.gcda *.gcno Backend/tests/*.gcda Backend/tests/*.gcno
-	open report/index.html
-	@rm -rf Backend/tests/*.d Backend/tests/*.o Backend/tests/*.gcda Backend/tests/*.gcno
-	@rm -rf Backend/*.o Backend/*.gcda Backend/*.gcno
+gcovr_report: clean add_coverage test
+	mkdir gcovr/
+	gcovr --html-details gcovr/report.details.html
+	rm -rf ./*.gc*
+	open gcovr/report.details.html
 
 add_coverage:
-	$(eval COVERAGE += --coverage)
+	$(eval CXXFLAGS += --coverage)
 
 test: $(NAME) $(TESTS_OBJ)
 	$(CXX) $(CXXFLAGS) $(TESTS_OBJ) $(LIBS) $(NAME) -o $@
 	./test
 
-$(NAME) : $(OBJ_FILES)
-	$(AR) $(NAME) $(MATRIX_OBJ_FILES) $?
+$(NAME) : matrix_lib $(OBJ_FILES)
+	$(AR) $(NAME) $(MATRIX_OBJ_FILES) $(OBJ_FILES)
 	@echo "$(COLOR_SUCCESS)=== Build complete ===$(COLOR_RESET)"
 
 %.o : %.cc
