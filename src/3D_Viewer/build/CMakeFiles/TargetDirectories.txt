@@ -1,0 +1,8 @@
+/home/denis/c++/C8_3DViewer_v1.0-3/src/3D_Viewer/build/CMakeFiles/3D_Viewer.dir
+/home/denis/c++/C8_3DViewer_v1.0-3/src/3D_Viewer/build/CMakeFiles/edit_cache.dir
+/home/denis/c++/C8_3DViewer_v1.0-3/src/3D_Viewer/build/CMakeFiles/rebuild_cache.dir
+/home/denis/c++/C8_3DViewer_v1.0-3/src/3D_Viewer/build/CMakeFiles/list_install_components.dir
+/home/denis/c++/C8_3DViewer_v1.0-3/src/3D_Viewer/build/CMakeFiles/install.dir
+/home/denis/c++/C8_3DViewer_v1.0-3/src/3D_Viewer/build/CMakeFiles/install/local.dir
+/home/denis/c++/C8_3DViewer_v1.0-3/src/3D_Viewer/build/CMakeFiles/install/strip.dir
+/home/denis/c++/C8_3DViewer_v1.0-3/src/3D_Viewer/build/CMakeFiles/3D_Viewer_autogen.dir
