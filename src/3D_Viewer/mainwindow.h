@@ -4,7 +4,6 @@
 #include <QFileDialog>
 #include <QMainWindow>
 #include <QMovie>
-#include <QSettings>
 #include <QTimer>
 #include <QtOpenGL/QtOpenGL>
 #include <QtOpenGLWidgets/QtOpenGLWidgets>
@@ -54,8 +53,9 @@ private:
   QVector<QImage> gif;
   float count = 0;
   QMessageBox errorBox;
-  QSettings *settings;
   controller_facade *controller;
+  preferences *preferences_dialog = new preferences();
+  interactions *interactions_dialog = new interactions();
 
  signals:
   void pushButton_openFile_clicked();

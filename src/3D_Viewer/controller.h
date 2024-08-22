@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QVector3D>
 #include <QOpenGLWidget>
+#include <QSettings>
 #include "display.h"
 
 class controller : public QObject
@@ -37,6 +38,14 @@ protected:
     void rotate_model_x(float angle);
     void rotate_model_y(float angle);
     void rotate_model_z(float angle);
+
+    void save_settings();
+    void load_settings();
+    QSettings *settings;
+
+signals:
+    void set_settings(int v_t, int e_t, int proj, float v_s, float e_s,
+                      QVector3D v_c, QVector3D e_c, QVector3D b_c);
 
 private:
     display *widget = nullptr;

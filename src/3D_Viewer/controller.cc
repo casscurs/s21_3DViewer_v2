@@ -118,12 +118,111 @@ void controller::rotate_model_z(float angle)
 
 }
 
+void controller::save_settings()
+{
+    // init
+    settings->setValue("settings_exist", 1);
+
+    // for verticles
+    settings->setValue("vert_r", widget->vert_color.x());
+    settings->setValue("vert_g", widget->vert_color.y());
+    settings->setValue("vert_b", widget->vert_color.z());
+    settings->setValue("verticles type", widget->vert_type);
+    settings->setValue("verticles size", widget->vert_size);
+
+    // for edges
+    settings->setValue("edge_r", widget->edge_color.x());
+    settings->setValue("edge_g", widget->edge_color.y());
+    settings->setValue("edge_b", widget->edge_color.z());
+    settings->setValue("line type", widget->edges_type);
+    settings->setValue("line size", widget->edges_size);
+
+    // for background
+    settings->setValue("background_color_red", widget->back_color.x());
+    settings->setValue("background_color_green", widget->back_color.y());
+    settings->setValue("background_color_blue", widget->back_color.z());
+
+    // for projection type
+    settings->setValue("projection_type", widget->projection);
+    // for file
+    //settings->setValue("baseFile", file);
+}
+
+void controller::load_settings()
+{
+      // if where was init of settings before else nothing
+    int v_t, e_t, proj;
+    float v_s, e_s;
+    QVector3D v_c, e_c, b_c;
+      if (settings->value("settings_exist").toInt()) {
+        // For Verticles
+        int vert_type = settings->value("verticles type").toInt();
+        switch (vert_type) {
+          case 0:
+            v_t = 0;
+            widget->vert_type = 0;
+            break;
+          case 1:
+            v_t = 1;
+            widget->vert_type = CIRCLE;
+            break;
+          case 2:
+            v_t = 2;
+            widget->vert_type = SQUARE;
+            break;
+        }
+        widget->vert_size = settings->value("verticles size").toDouble();
+        v_s = widget->vert_size;
+        widget->vert_color.setX(settings->value("vert_r").toDouble());
+        widget->vert_color.setY(settings->value("vert_g").toDouble());
+        widget->vert_color.setZ(settings->value("vert_b").toDouble());
+
+        v_c = widget->vert_color;
+        // for file
+
+        // For EDGES
+        int edges_type = settings->value("line type").toInt();
+        switch (edges_type) {
+          case 1:
+            e_t = 0;
+            widget->edges_type = SOLID;
+            break;
+          case 2:
+            e_t = 1;
+            widget->edges_type = DOTTED;
+            break;
+        }
+        widget->edges_size = settings->value("line size").toInt();
+        e_s = widget->edges_size;
+        widget->edge_color.setX(settings->value("edge_r").toDouble());
+        widget->edge_color.setY(settings->value("edge_g").toDouble());
+        widget->edge_color.setZ(settings->value("edge_b").toDouble());
+
+        e_c = widget->edge_color;
+
+        // For BACKGROUND
+        widget->back_color.setX(settings->value("background_color_red").toDouble());
+        widget->back_color.setY(settings->value("background_color_green").toDouble());
+        widget->back_color.setZ(settings->value("background_color_blue").toDouble());
+
+        b_c = widget->back_color;
+
+        // For projection type
+        widget->projection = settings->value("projection_type").toInt();
+        proj = widget->projection;
+
+        emit set_settings(v_t, e_t, proj, v_s, e_s, v_c, e_c, b_c);
+
+        widget->update();
+      }
+}
+
 controller_facade::controller_facade(QObject *parent) : controller(parent) {
     // Здесь можно добавить код инициализации, если нужно
 }
 
 controller::controller(QObject *parent) : QObject(parent) {
-    // Здесь можно добавить код инициализации, если необходимо
+    settings = new QSettings("school21", "TechnoTeam", this);
 }
 
 void controller::setOGLwidget(display *display)

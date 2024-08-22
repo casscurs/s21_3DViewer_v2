@@ -6,13 +6,61 @@ preferences::preferences(QWidget *parent) :
     ui(new Ui::preferences)
 {
     ui->setupUi(this);
-    this->setFixedSize(274,211);
+    this->setFixedSize(311,213);
     this->setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
 }
 
 preferences::~preferences()
 {
     delete ui;
+}
+
+void preferences::set_settings(int v_t, int e_t, int proj, float v_s, float e_s, QVector3D v_c, QVector3D e_c, QVector3D b_c)
+{
+    if(v_t == 0){
+        ui->radioButton_typeVert_none->setChecked(true);
+        ui->radioButton_typeVert_circle->setChecked(false);
+        ui->radioButton_typeVert_square->setChecked(false);
+     } else if(v_t == 1){
+        ui->radioButton_typeVert_none->setChecked(false);
+        ui->radioButton_typeVert_circle->setChecked(true);
+        ui->radioButton_typeVert_square->setChecked(false);
+     } else if(v_t == 2){
+        ui->radioButton_typeVert_none->setChecked(false);
+        ui->radioButton_typeVert_circle->setChecked(false);
+        ui->radioButton_typeVert_square->setChecked(true);
+     }
+
+    if(e_t == 0){
+        ui->radioButton_typeEdge_solid->setChecked(true);
+        ui->radioButton_typeEdge_dotted->setChecked(false);
+    } else if(e_t == 1){
+        ui->radioButton_typeEdge_solid->setChecked(false);
+        ui->radioButton_typeEdge_dotted->setChecked(true);
+    }
+
+    if(proj == 0){
+        ui->radioButton_central_proj->setChecked(true);
+        ui->radioButton_parallel_proj->setChecked(false);
+    } else if(proj == 1){
+        ui->radioButton_central_proj->setChecked(false);
+        ui->radioButton_parallel_proj->setChecked(true);
+    }
+
+    ui->doubleSpinBox_vertSize->setValue(v_s);
+    ui->doubleSpinBox_edgeSize->setValue(e_s);
+
+    ui->spinBox_redVert->setValue(v_c.x());
+    ui->spinBox_greenVert->setValue(v_c.y());
+    ui->spinBox_blueVert->setValue(v_c.z());
+
+    ui->spinBox_redEdge->setValue(e_c.x());
+    ui->spinBox_greenEdge->setValue(e_c.y());
+    ui->spinBox_blueEdge->setValue(e_c.z());
+
+    ui->spinBox_redBack->setValue(b_c.x());
+    ui->spinBox_greenBack->setValue(b_c.y());
+    ui->spinBox_blueBack->setValue(b_c.z());
 }
 
 void preferences::on_radioButton_parallel_proj_clicked()

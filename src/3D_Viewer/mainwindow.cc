@@ -8,23 +8,22 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), controller(new controller_facade(this)) {
   ui->setupUi(this);
 
-  settings = new QSettings("school21", "TechnoTeam", this);
   load_settings();
 
   controller->setOGLwidget(ui->openGLWidget);
+  connect(this->controller, &controller_facade::set_settings, preferences_dialog, &preferences::set_settings);
 
   timer = new QTimer(0);
 }
 
 MainWindow::~MainWindow() {
   save_settings();
-  delete settings;
   delete ui;
 }
 
 void MainWindow::save_settings() {
   // init
-  settings->setValue("settings_exist", 1);
+  //settings->setValue("settings_exist", 1);
 
   // for verticles
 //  settings->setValue("vert_r", ui->widget->vert_r);
@@ -193,19 +192,17 @@ void MainWindow::makeGIF() {
 
 void MainWindow::on_actionView_preferences_triggered()
 {
-    preferences *dialog = new preferences();
-    connect(dialog, &preferences::projection, this->controller, &controller_facade::set_projection);
-    connect(dialog, &preferences::edges, this->controller, &controller_facade::set_edges_type);
-    connect(dialog, &preferences::vertices, this->controller, &controller_facade::set_vertices_type);
-    connect(dialog, &preferences::size, this->controller, &controller_facade::set_size);
-    connect(dialog, &preferences::color, this->controller, &controller_facade::set_color);
-    dialog->show();
+    connect(preferences_dialog, &preferences::projection, this->controller, &controller_facade::set_projection);
+    connect(preferences_dialog, &preferences::edges, this->controller, &controller_facade::set_edges_type);
+    connect(preferences_dialog, &preferences::vertices, this->controller, &controller_facade::set_vertices_type);
+    connect(preferences_dialog, &preferences::size, this->controller, &controller_facade::set_size);
+    connect(preferences_dialog, &preferences::color, this->controller, &controller_facade::set_color);
+    preferences_dialog->show();
 }
 
 void MainWindow::on_actionModel_interactions_triggered()
 {
-    interactions *dialog = new interactions();
-    connect(dialog, &interactions::move, this->controller, &controller_facade::move_model);
-    connect(dialog, &interactions::rotate, this->controller, &controller_facade::rotate_model);
-    dialog->show();
+    connect(interactions_dialog, &interactions::move, this->controller, &controller_facade::move_model);
+    connect(interactions_dialog, &interactions::rotate, this->controller, &controller_facade::rotate_model);
+    interactions_dialog->show();
 }

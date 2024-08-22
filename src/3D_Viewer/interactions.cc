@@ -6,6 +6,8 @@ interactions::interactions(QWidget *parent) :
     ui(new Ui::interactions)
 {
     ui->setupUi(this);
+    this->setFixedSize(234,160);
+    this->setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
 }
 
 interactions::~interactions()

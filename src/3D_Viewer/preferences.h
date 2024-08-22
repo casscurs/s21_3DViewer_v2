@@ -16,6 +16,9 @@ public:
     explicit preferences(QWidget *parent = nullptr);
     ~preferences();
 
+public slots:
+    void set_settings(int v_t, int e_t, int proj, float v_s, float e_s, QVector3D v_c, QVector3D e_c, QVector3D b_c);
+
 signals:
     void projection(int projection);
     void vertices(int type);
