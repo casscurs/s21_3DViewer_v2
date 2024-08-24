@@ -8,6 +8,10 @@ namespace Ui {
 class preferences;
 }
 
+namespace s21 {
+/**
+ * @brief класс диалогового окна настроек
+ */
 class preferences : public QDialog
 {
     Q_OBJECT
@@ -74,4 +78,5 @@ private:
     QVector3D rgb_color(int index);
 };
 
+}
 #endif // PREFERENCES_H

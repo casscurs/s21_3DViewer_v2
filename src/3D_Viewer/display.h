@@ -18,10 +18,6 @@
 #include <QtOpenGLWidgets>
 #include <QVector3D>
 
-extern "C" {
-#include "../Backend/back.h"
-}
-
 class display : public QOpenGLWidget {
   Q_OBJECT
  private:
@@ -37,7 +33,6 @@ class display : public QOpenGLWidget {
   void drawCoordinateAxes();
 
  public:
-  res syst = {0};
 
   QVector3D back_color = {0.0f, 0.0f, 0.0f};
   QVector3D vert_color = {255.0f, 255.0f, 255.0f};

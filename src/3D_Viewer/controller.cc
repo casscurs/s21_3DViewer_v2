@@ -1,5 +1,7 @@
 #include "controller.h"
 
+namespace s21 {
+
 void controller::load_file()
 {
 
@@ -234,4 +236,4 @@ controller::controller() : QObject(nullptr) {
     // Реализация для конструктора без параметров
 }
 
-
+}

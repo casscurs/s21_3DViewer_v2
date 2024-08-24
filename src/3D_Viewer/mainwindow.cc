@@ -2,6 +2,8 @@
 
 #include "./ui_mainwindow.h"
 
+namespace s21 {
+
 int file_status_main = 0;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -205,4 +207,6 @@ void MainWindow::on_actionModel_interactions_triggered()
     connect(interactions_dialog, &interactions::move, this->controller, &controller_facade::move_model);
     connect(interactions_dialog, &interactions::rotate, this->controller, &controller_facade::rotate_model);
     interactions_dialog->show();
+}
+
 }

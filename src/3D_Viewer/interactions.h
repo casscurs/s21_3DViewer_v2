@@ -7,6 +7,11 @@ namespace Ui {
 class interactions;
 }
 
+namespace s21 {
+
+/**
+ * @brief класс диалогового окна действий с моделью
+ */
 class interactions : public QDialog
 {
     Q_OBJECT
@@ -28,4 +33,5 @@ private:
     Ui::interactions *ui;
 };
 
+}
 #endif // INTERACTIONS_H
