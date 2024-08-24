@@ -14,9 +14,13 @@ void ProductModel::Movement(const double a, const char flag) noexcept {
       for (int i = 0; i != matrix.get_rows(); ++i) matrix(i, 2) += a;
       break;
   }
+  Notify();
 }
 
-void ProductModel::Mult(const double a) { this->matrix *= a; }
+void ProductModel::Mult(const double a) {
+  this->matrix *= a;
+  Notify();
+}
 
 void ProductModel::ResizeFrames(const double f) {
   double max = fabs(range_x[1] - range_x[0]);
@@ -37,6 +41,7 @@ void ProductModel::CenterFrames() noexcept {
     matrix(i, 1) -= center_y;
     matrix(i, 2) -= center_z;
   }
+  Notify();
 }
 
 /*!
@@ -65,6 +70,7 @@ void ProductModel::Rot(double angle,
         break;
     }
   }
+  Notify();
 }
 
 }  // namespace s21

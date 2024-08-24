@@ -13,7 +13,7 @@ namespace s21 {
 class IObserver {
  public:
   virtual ~IObserver() {}
-  virtual void Update(const std::string& message_from_object) = 0;
+  virtual void Update() = 0;
 };
 
 /**
@@ -33,7 +33,6 @@ class ISubject {
 class Subject : public ISubject {
  private:
   std::list<IObserver*> list_observer;
-  std::string message;
 
  public:
   /**
@@ -66,53 +65,44 @@ class Subject : public ISubject {
     std::list<IObserver*>::iterator iterator = list_observer.begin();
 
     while (iterator != list_observer.end()) {
-      (*iterator)->Update(message);
+      (*iterator)->Update();
       ++iterator;
     }
   }
-
-  /**
-   * @brief Метод создающий сообщение и рассылающий его наблюдателям
-   */
-  void CreateMessage(std::string message = "Empty") {
-    this->message = message;
-    Notify();
-  }
 };
 
-/**
- * @brief Абстрактный класс наблюдателя
- */
-class Observer : public IObserver {
- private:
-  std::string message_from_subject;
-  Subject& subject;
-  /* общее число наблюдателей */
-  static int static_number;
-  /* номер конкретного наблюдателя */
-  int number;
+// /**
+//  * @brief Абстрактный класс наблюдателя
+//  */
+// class Observer : public IObserver {
+//  private:
+//   Subject& subject;
+//   /* общее число наблюдателей */
+//   static int static_number;
+//   /* номер конкретного наблюдателя */
+//   int number;
 
- public:
-  Observer(Subject& subject) : subject(subject) {
-    this->subject.Attach(this);
-    ++Observer::static_number;
-    this->number = Observer::static_number;
-  }
+//  public:
+//   Observer(Subject& subject) : subject(subject) {
+//     this->subject.Attach(this);
+//     ++Observer::static_number;
+//     this->number = Observer::static_number;
+//   }
 
-  virtual ~Observer() {}
+//   virtual ~Observer() {}
 
-  /**
-   * @brief Метод, который использует субъект для уведомления наблюдателя
-   */
-  void Update(const std::string& new_message_from_subject) override {
-    message_from_subject = new_message_from_subject;
-  }
+//   /**
+//    * @brief Метод, который использует субъект для уведомления наблюдателя
+//    */
+//   void Update() override {
+//     // вызов методов перерисовки
+//   }
 
-  /**
-   * @brief Метод открепляющий наблядателя от субъекта наблюдения
-   */
-  void RemoveMeFromTheList() { subject.Detach(this); }
-};
+//   /**
+//    * @brief Метод открепляющий наблядателя от субъекта наблюдения
+//    */
+//   void RemoveMeFromTheList() { subject.Detach(this); }
+// };
 
 }  // namespace s21
 

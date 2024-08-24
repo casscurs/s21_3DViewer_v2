@@ -8,7 +8,6 @@
 #include "display.h"
 #include "../Backend/model/s21_builder.h"
 #include "../Backend/model/s21_model.h"
-#include "../Backend/model/s21_observer.h"
 
 namespace s21 {
 /**
@@ -18,11 +17,15 @@ class controller : public QObject
 {
     Q_OBJECT
 
+
+
 public:
     controller();
     explicit controller(QObject *parent = nullptr);
 
     void setOGLwidget(display *display);
+    std::shared_ptr<s21::ProductModel> model_ptr = nullptr;
+
 
 protected:
     /**

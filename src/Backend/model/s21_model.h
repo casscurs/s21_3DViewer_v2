@@ -5,13 +5,14 @@
 #include <vector>
 
 #include "../matrix/s21_matrix_oop.h"
+#include "./s21_observer.h"
 
 namespace s21 {
 
 /**
  * @brief Класс определяющий модель объекта
  */
-class ProductModel {
+class ProductModel : public Subject {
  public:
   std::vector<std::vector<int>> facets{};
   S21Matrix matrix{};
