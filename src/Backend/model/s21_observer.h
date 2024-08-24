@@ -114,8 +114,6 @@ class Observer : public IObserver {
   void RemoveMeFromTheList() { subject.Detach(this); }
 };
 
-int Observer::static_number = 0;
-
 }  // namespace s21
 
 #endif  // S21_OBSERVER_H
