@@ -1,6 +1,8 @@
 #include "preferences.h"
 #include "ui_preferences.h"
 
+namespace s21 {
+
 preferences::preferences(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::preferences)
@@ -189,4 +191,6 @@ QVector3D preferences::rgb_color(int index)
         return QVector3D(0, 255, 0);
     else
         return QVector3D(255, 255, 255);
+}
+
 }

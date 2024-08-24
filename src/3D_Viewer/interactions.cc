@@ -1,6 +1,8 @@
 #include "interactions.h"
 #include "ui_interactions.h"
 
+namespace s21 {
+
 interactions::interactions(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::interactions)
@@ -33,4 +35,6 @@ void interactions::on_pushButton_rotate_clicked()
         emit rotate(1, ui->spinBox_rotate->value());
     if(ui->radioButton_rotateZ->isChecked())
         emit rotate(2, ui->spinBox_rotate->value());
+}
+
 }

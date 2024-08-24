@@ -21,6 +21,8 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+namespace s21 {
+
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
@@ -53,11 +55,13 @@ private:
   QVector<QImage> gif;
   float count = 0;
   QMessageBox errorBox;
-  controller_facade *controller;
-  preferences *preferences_dialog = new preferences();
-  interactions *interactions_dialog = new interactions();
+  s21::controller_facade *controller;
+  s21::preferences *preferences_dialog = new s21::preferences();
+  s21::interactions *interactions_dialog = new s21::interactions();
 
  signals:
   void pushButton_openFile_clicked();
 };
+
+}
 #endif  // MAINWINDOW_H

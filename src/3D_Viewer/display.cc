@@ -48,15 +48,15 @@ void display::paintGL() {
     drawCoordinateAxes();
     glColor3d(edge_color.x() / 255.0f, edge_color.y() / 255.0f, edge_color.z() / 255.0f);
 
-    for (int i = 0; i < syst.amountFacets; ++i) {
-      glBegin(GL_LINE_LOOP);
-      for (int j = 0; j < syst.face[i].count; ++j) {
-        int n = syst.face[i].f[j];
-        glVertex3d(syst.vert.coord[n].x, syst.vert.coord[n].y,
-                   syst.vert.coord[n].z);
-      }
-      glEnd();
-    }
+//    for (int i = 0; i < syst.amountFacets; ++i) {
+//      glBegin(GL_LINE_LOOP);
+//      for (int j = 0; j < syst.face[i].count; ++j) {
+//        int n = syst.face[i].f[j];
+//        glVertex3d(syst.vert.coord[n].x, syst.vert.coord[n].y,
+//                   syst.vert.coord[n].z);
+//      }
+//      glEnd();
+//    }
 
       if (vert_type == CIRCLE)
         glEnable(GL_POINT_SMOOTH);
@@ -66,16 +66,16 @@ void display::paintGL() {
       glColor3d(vert_color.x() / 255.0f, vert_color.y() / 255.0f, vert_color.z() / 255.0f);
       glPointSize(vert_size);  //размер элементов
 
-      for (int i = 0; i < syst.amountFacets; ++i) {
-        glBegin(GL_POINTS);
-        //  glColor3f(1.0f, 0.0f, 0.0f); //цвет отображения
-        for (int j = 0; j < syst.face[i].count; ++j) {
-          int n = syst.face[i].f[j];
-          glVertex3d(syst.vert.coord[n].x, syst.vert.coord[n].y,
-                     syst.vert.coord[n].z);
-        }
-        glEnd();
-      }
+//      for (int i = 0; i < syst.amountFacets; ++i) {
+//        glBegin(GL_POINTS);
+//        //  glColor3f(1.0f, 0.0f, 0.0f); //цвет отображения
+//        for (int j = 0; j < syst.face[i].count; ++j) {
+//          int n = syst.face[i].f[j];
+//          glVertex3d(syst.vert.coord[n].x, syst.vert.coord[n].y,
+//                     syst.vert.coord[n].z);
+//        }
+//        glEnd();
+//      }
   }
   glBegin(GL_LINES);
   glVertex2f(0.0f, 0.0f);
@@ -115,24 +115,24 @@ void display::drawCoordinateAxes() {
 }
 
 void display::openFile(char *filename, int fileStatus) {
-  if (fileStatus != 0) res_free(&syst);
-  flag = obj_counter(filename, &syst);
-  flag = matrix_fill(filename, &syst);
-  if (syst.vert.amountVert == 0) flag = -1;
-  if (flag == 0) {
-    center_frames(&syst);
-    resize_frames(&syst, 0.5);
-    update();
-  }
+//  if (fileStatus != 0) res_free(&syst);
+//  flag = obj_counter(filename, &syst);
+//  flag = matrix_fill(filename, &syst);
+//  if (syst.vert.amountVert == 0) flag = -1;
+//  if (flag == 0) {
+//    center_frames(&syst);
+//    resize_frames(&syst, 0.5);
+//    update();
+//  }
 }
 
 void display::move_model(double a, char axis) {
-  movement(&syst, a, axis);
+//  movement(&syst, a, axis);
   update();
 }
 
 void display::rot_model(double angle, char axis) {
-  rot(&syst, angle, axis);
+//  rot(&syst, angle, axis);
   update();
 }
 
@@ -141,6 +141,6 @@ void display::scale_model(double a) {
     a = -a;
     a = 1.0 / a;
   }
-  resize_frames(&syst, a);
+//  resize_frames(&syst, a);
   update();
 }
