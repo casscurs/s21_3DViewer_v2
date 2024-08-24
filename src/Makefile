@@ -56,7 +56,7 @@ gcovr_report: clean add_coverage test
 add_coverage:
 	$(eval CXXFLAGS += --coverage)
 
-test: $(NAME) $(TESTS_OBJ)
+tests: $(NAME) $(TESTS_OBJ)
 	$(CXX) $(CXXFLAGS) $(TESTS_OBJ) $(LIBS) $(NAME) -o $@
 	./test
 
