@@ -59,8 +59,10 @@ set(PROJECT_SOURCES
     interactions.cc
     interactions.h
     interactions.ui
-
-    ../Backend/back.h
+    ../Backend/model/s21_builder.h
+    ../Backend/model/s21_model.h
+    ../Backend/model/s21_observer.h
+#    ../Backend/back.h
 #    ../Backend/athen.c
 #    ../Backend/files.c
 #    ../Backend/free.c

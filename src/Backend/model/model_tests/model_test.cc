@@ -3,6 +3,7 @@
 TEST(Model, amount_vert_test) {
   const char *filename =
       "Backend/model/model_tests/examples_for_tests/normal.obj";
+
   s21::BuilderFromObjFile build(filename);
   std::shared_ptr<s21::ProductModel> model_ptr = nullptr;
 
