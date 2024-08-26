@@ -19,6 +19,11 @@ void controller::load_file()
 
   model_ptr = build.GetProductModel();
 
+  widget->model_ptr = model_ptr;
+  widget->flag = 1;
+  widget->model_ptr->CenterFrames();
+  widget->model_ptr->ResizeFrames(0.5);
+
   model_ptr->Attach(widget);
   model_ptr->Notify();
 

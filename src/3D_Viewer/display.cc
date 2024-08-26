@@ -38,7 +38,7 @@ void display::paintGL() {
     glFrustum(-1, 1, -1, 1, 2, 12.5);
     glTranslated(0, 0, -2.5);
   }
-  if (flag == 0) {
+  if (flag == 1) {
     /* Цвет фона */
     glClearColor(back_color.x() / 255.0f, back_color.y() / 255.0f, back_color.z() / 255.0f, 0);
     /* Очистка буфера цвета в каждом прогоне */
@@ -59,17 +59,15 @@ void display::paintGL() {
     drawCoordinateAxes();
     glColor3d(edge_color.x() / 255.0f, edge_color.y() / 255.0f, edge_color.z() / 255.0f);
 
-
-
-    //    for (int i = 0; i < syst.amountFacets; ++i) {
-    //      glBegin(GL_LINE_LOOP);
-    //      for (int j = 0; j < syst.face[i].count; ++j) {
-    //        int n = syst.face[i].f[j];
-    //        glVertex3d(syst.vert.coord[n].x, syst.vert.coord[n].y,
-    //                   syst.vert.coord[n].z);
-    //      }
-    //      glEnd();
-    //    }
+//    for (size_t i = 0; i < model_ptr->facets.size(); ++i) {
+//      glBegin(GL_LINE_STRIP);
+//      //  glColor3f(1.0f, 0.0f, 0.0f); //цвет отображения
+//      for (size_t j = 0; j < model_ptr->facets[i].size(); ++j) {
+//        glVertex3d(model_ptr->matrix(i, 0), model_ptr->matrix(i, 1),
+//                   model_ptr->matrix(i, 2));
+//      }
+//      glEnd();
+//    }
 
     if (vert_type == CIRCLE)
       glEnable(GL_POINT_SMOOTH);
@@ -79,21 +77,14 @@ void display::paintGL() {
     glColor3d(vert_color.x() / 255.0f, vert_color.y() / 255.0f, vert_color.z() / 255.0f);
     glPointSize(vert_size);  //размер элементов
 
-    //      for (int i = 0; i < syst.amountFacets; ++i) {
-    //        glBegin(GL_POINTS);
-    //        //  glColor3f(1.0f, 0.0f, 0.0f); //цвет отображения
-    //        for (int j = 0; j < syst.face[i].count; ++j) {
-    //          int n = syst.face[i].f[j];
-    //          glVertex3d(syst.vert.coord[n].x, syst.vert.coord[n].y,
-    //                     syst.vert.coord[n].z);
-    //        }
-    //        glEnd();
-    //      }
+    glBegin(GL_POINTS);
+    for (int i = 0; i < model_ptr->matrix.get_rows(); ++i) {
+      std::cout << model_ptr->matrix(i, 0) << std::endl;
+      glVertex3d(model_ptr->matrix(i, 0), model_ptr->matrix(i, 1),
+                   model_ptr->matrix(i, 2));
+    }
+    glEnd();
   }
-  glBegin(GL_LINES);
-  glVertex2f(0.0f, 0.0f);
-  glVertex2f(0.5f, 0.5f);
-  glEnd();
 }
 
 void display::mousePressEvent(QMouseEvent *mo) { mPos = mo->pos(); }

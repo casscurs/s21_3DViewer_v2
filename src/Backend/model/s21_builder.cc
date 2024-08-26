@@ -1,4 +1,5 @@
 #include "./s21_builder.h"
+#include <cstring>
 
 namespace s21 {
 

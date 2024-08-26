@@ -18,6 +18,7 @@
 #include <QtOpenGLWidgets>
 #include <QVector3D>
 #include "../Backend/model/s21_observer.h"
+#include "../Backend/model/s21_model.h"
 
 
 // ПОКРЫТЬ БРИФАМИ И ПРОВЕРИТЬ ПРИВАТНОСТЬ
@@ -38,7 +39,6 @@ private:
   double scale = 0;
   QPoint mPos;
   QTimer tmr;
-  int flag = 0;
 
 
   void mousePressEvent(QMouseEvent *) override;
@@ -61,7 +61,10 @@ private:
   float vert_size = 0.5;
   int projection = PARALLEL;
 
+  int flag = 0;
+
   display(QWidget *parent);
+  std::shared_ptr<s21::ProductModel> model_ptr = nullptr;
 
   void openFile(char *filename, int fileStatus);
   void move_model(double a, char axis);

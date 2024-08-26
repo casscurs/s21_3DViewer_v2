@@ -6,6 +6,7 @@
 #include <exception>
 #include <iostream>
 #include <utility>
+#include <math.h>
 
 class S21Matrix {
  private:

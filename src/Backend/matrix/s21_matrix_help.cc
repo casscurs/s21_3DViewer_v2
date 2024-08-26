@@ -1,6 +1,7 @@
 /* Copyright [2024] <Casscurs> */
 
 #include "./s21_matrix_oop.h"
+#include <math.h>
 
 void S21Matrix::freeMatrix() {
   for (int i = 0; i != rows_; ++i) {
@@ -44,7 +45,7 @@ void S21Matrix::swap(S21Matrix& other) {
 
 /* Вернет true, если числа равны, false - не равны */
 bool S21Matrix::float_compare(double a, double b) const {
-  return std::round(a * pow(10, 6)) == round(b * pow(10, 6)) ? true : false;
+  return round(a * pow(10, 6)) == round(b * pow(10, 6)) ? true : false;
 }
 
 /* Вернет true, если размеры совпали */
