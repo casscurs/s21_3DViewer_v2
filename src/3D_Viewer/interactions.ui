@@ -199,6 +199,13 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_scale">
+         <property name="text">
+          <string>Scale</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>

@@ -37,9 +37,9 @@ void interactions::on_pushButton_rotate_clicked()
         emit rotate(2, ui->spinBox_rotate->value());
 }
 
+void s21::interactions::on_pushButton_scale_clicked()
+{
+    emit scale(ui->doubleSpinBox_scale->value());
 }
 
-void s21::interactions::on_doubleSpinBox_scale_valueChanged(double arg1)
-{
-    emit scale(arg1);
 }

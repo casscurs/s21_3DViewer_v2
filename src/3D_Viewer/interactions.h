@@ -25,7 +25,7 @@ private slots:
 
     void on_pushButton_rotate_clicked();
 
-    void on_doubleSpinBox_scale_valueChanged(double arg1);
+    void on_pushButton_scale_clicked();
 
 signals:
     void move(int axis, float movement);
