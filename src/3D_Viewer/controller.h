@@ -26,12 +26,13 @@ public:
     void setOGLwidget(display *display);
     std::shared_ptr<s21::ProductModel> model_ptr = nullptr;
 
-
-protected:
+   protected slots:
     /**
      * @brief загрузка файла и заполнение модели
      */
     void load_file();
+
+protected:
     /**
      * @brief установка центральной проекции
      */

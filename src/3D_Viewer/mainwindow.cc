@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   controller->setOGLwidget(ui->openGLWidget);
   connect(this->controller, &controller_facade::set_settings, preferences_dialog, &preferences::set_settings);
+  connect(this->ui->pushButton_openFile, &QPushButton::clicked, this->controller, &controller_facade::load_file);
 
   timer = new QTimer(0);
 }

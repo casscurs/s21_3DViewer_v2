@@ -4,6 +4,23 @@ namespace s21 {
 
 void controller::load_file()
 {
+   QString file = QFileDialog::getOpenFileName(0, "Выберите файл", ".", tr("(*.obj)"));
+   QByteArray q_path = file.toLocal8Bit();
+  const char* filename = q_path.data();
+  s21::BuilderFromObjFile build(filename);
+
+  try{
+    build.CreateModel();
+  }
+  catch(...){
+    // Куда вывод?
+    std::cout << "File exception";
+  }
+
+  model_ptr = build.GetProductModel();
+
+  model_ptr->Attach(widget);
+  model_ptr->Notify();
 
 }
 
