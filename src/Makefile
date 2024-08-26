@@ -58,7 +58,7 @@ add_coverage:
 
 tests: $(NAME) $(TESTS_OBJ)
 	$(CXX) $(CXXFLAGS) $(TESTS_OBJ) $(LIBS) $(NAME) -o $@
-	./test
+	./tests
 
 $(NAME) : matrix_lib $(OBJ_FILES)
 	$(AR) $(NAME) $(MATRIX_OBJ_FILES) $(OBJ_FILES)
