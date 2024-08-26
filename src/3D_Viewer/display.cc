@@ -59,15 +59,16 @@ void display::paintGL() {
     drawCoordinateAxes();
     glColor3d(edge_color.x() / 255.0f, edge_color.y() / 255.0f, edge_color.z() / 255.0f);
 
-//    for (size_t i = 0; i < model_ptr->facets.size(); ++i) {
-//      glBegin(GL_LINE_STRIP);
-//      //  glColor3f(1.0f, 0.0f, 0.0f); //цвет отображения
-//      for (size_t j = 0; j < model_ptr->facets[i].size(); ++j) {
-//        glVertex3d(model_ptr->matrix(i, 0), model_ptr->matrix(i, 1),
-//                   model_ptr->matrix(i, 2));
-//      }
-//      glEnd();
-//    }
+    for (size_t i = 0; i < model_ptr->facets.size(); ++i) {
+      glBegin(GL_LINE_LOOP);
+      //  glColor3f(1.0f, 0.0f, 0.0f); //цвет отображения
+      for (size_t j = 0; j < model_ptr->facets[i].size(); ++j) {
+        int n = model_ptr->facets[i][j];
+        glVertex3d(model_ptr->matrix(n, 0), model_ptr->matrix(n, 1),
+                   model_ptr->matrix(n, 2));
+      }
+      glEnd();
+    }
 
     if (vert_type == CIRCLE)
       glEnable(GL_POINT_SMOOTH);
@@ -79,7 +80,6 @@ void display::paintGL() {
 
     glBegin(GL_POINTS);
     for (int i = 0; i < model_ptr->matrix.get_rows(); ++i) {
-      std::cout << model_ptr->matrix(i, 0) << std::endl;
       glVertex3d(model_ptr->matrix(i, 0), model_ptr->matrix(i, 1),
                    model_ptr->matrix(i, 2));
     }
