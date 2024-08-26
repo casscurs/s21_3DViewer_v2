@@ -21,7 +21,7 @@ void controller::load_file()
     model_ptr->Attach(widget);
 
     widget->model_ptr->CenterFrames();
-    widget->model_ptr->ResizeFrames(0.1);
+    widget->model_ptr->ResizeFrames(0.5);
   }
   catch(...){
     // Куда вывод?
@@ -109,7 +109,12 @@ void controller::set_background_color_rgb(float red, float green, float blue)
 
 void controller::set_model_scale(float scale)
 {
-    model_ptr->ResizeFrames(scale);
+    if (scale < 0) {
+    scale = -scale;
+    scale = 1.0 / scale;
+    }
+
+    model_ptr->Mult(scale);
 }
 
 void controller::move_model_x(float movement)

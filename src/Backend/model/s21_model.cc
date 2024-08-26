@@ -28,6 +28,12 @@ void ProductModel::ResizeFrames(const double f) {
   if (fabs(range_z[1] - range_z[0]) > max) max = fabs(range_z[1] - range_z[0]);
 
   double scale = (f - (f * (-1))) / max;
+
+  for (int i = 0; i < 2; ++i) {
+    range_x[i] = range_x[i] * scale;
+    range_y[i] = range_x[i] * scale;
+    range_z[i] = range_x[i] * scale;
+  }
   Mult(scale);
 }
 

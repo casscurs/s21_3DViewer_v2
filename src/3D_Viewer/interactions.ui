@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>234</width>
+    <width>250</width>
     <height>160</height>
    </rect>
   </property>
@@ -182,6 +182,9 @@
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <item>
         <widget class="QDoubleSpinBox" name="doubleSpinBox_scale">
+         <property name="keyboardTracking">
+          <bool>true</bool>
+         </property>
          <property name="minimum">
           <double>0.100000000000000</double>
          </property>
