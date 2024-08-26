@@ -33,9 +33,6 @@ class MainWindow : public QMainWindow {
   QString file = 0;
   int fileStatus = 0;
 
- public slots:
-  void openFile();
-
  private slots:
   void on_pushButton_screen_clicked();
   void on_pushButton_gif_clicked();
@@ -56,8 +53,8 @@ private:
   float count = 0;
   QMessageBox errorBox;
   s21::controller_facade *controller;
-  s21::preferences *preferences_dialog = new s21::preferences();
-  s21::interactions *interactions_dialog = new s21::interactions();
+  s21::preferences *preferences_dialog = new s21::preferences(this);
+  s21::interactions *interactions_dialog = new s21::interactions(this);
 
  signals:
   void pushButton_openFile_clicked();

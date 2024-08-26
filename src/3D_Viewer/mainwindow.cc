@@ -20,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 MainWindow::~MainWindow() {
+  delete preferences_dialog;
+  delete interactions_dialog;
   save_settings();
   delete ui;
 }
@@ -121,38 +123,6 @@ void MainWindow::load_settings() {
 //  }
 }
 
-void MainWindow::openFile() {
-    controller->load_file();
-//  file = QFileDialog::getOpenFileName(0, "Выберите файл", ".", tr("(*.obj)"));
-//  QString f = NULL;
-//  char *name = NULL;
-//  char *buff = NULL;
-//  if (file != "") {
-//    ui->doubleSpinBox_scale->setValue(0.5);
-//    fileStatus = 1;
-//    QByteArray q_path = file.toLocal8Bit();
-//    result_path = q_path.data();
-//    buff = q_path.data();
-//    ui->widget->openFile(result_path, fileStatus);
-//    if (ui->widget->flag == 0) {
-//      ui->label_vert->setText(
-//          QString::number(ui->widget->syst.vert.amountVert));
-//      ui->label_face->setText(QString::number(ui->widget->syst.amountFacets));
-//      name = strtok(buff, "/");
-//      while (name != NULL) {
-//        f = QString::fromUtf8(name);
-//        name = strtok(NULL, "/");
-//      }
-//      ui->label_filename->setText(f);
-//    } else if (ui->widget->flag == -1)
-//      errorBox.critical(0, "Error", "File error!");
-//    else if (ui->widget->flag == -2)
-//      errorBox.critical(0, "Error", "Facets error!");
-//  } else {
-//    ui->label_filename->setText("File not valid");
-//  }
-}
-
 void MainWindow::on_pushButton_screen_clicked() {
 //  QString screen_name =
 //      QFileDialog::getSaveFileName(this, "Save screen", "", "*.jpeg *.bmp");
@@ -207,6 +177,7 @@ void MainWindow::on_actionModel_interactions_triggered()
 {
     connect(interactions_dialog, &interactions::move, this->controller, &controller_facade::move_model);
     connect(interactions_dialog, &interactions::rotate, this->controller, &controller_facade::rotate_model);
+    connect(interactions_dialog, &interactions::scale, this->controller, &controller_facade::set_model_scale);
     interactions_dialog->show();
 }
 

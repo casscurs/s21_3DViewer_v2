@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget_interactions">
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab_move">
       <attribute name="title">
@@ -172,6 +172,29 @@
           </widget>
          </item>
         </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Scale</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_scale">
+         <property name="minimum">
+          <double>0.100000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>100.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.010000000000000</double>
+         </property>
+         <property name="value">
+          <double>0.500000000000000</double>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

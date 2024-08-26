@@ -14,7 +14,6 @@ void controller::load_file()
 
     model_ptr = build.GetProductModel();
 
-    std::cout << "boba";
     widget->model_ptr = model_ptr;
 
     widget->flag = 1;
@@ -22,7 +21,7 @@ void controller::load_file()
     model_ptr->Attach(widget);
 
     widget->model_ptr->CenterFrames();
-    widget->model_ptr->ResizeFrames(0.5);
+    widget->model_ptr->ResizeFrames(0.1);
   }
   catch(...){
     // Куда вывод?
@@ -120,27 +119,27 @@ void controller::move_model_x(float movement)
 
 void controller::move_model_y(float movement)
 {
-
+    model_ptr->Movement(movement, 'y');
 }
 
 void controller::move_model_z(float movement)
 {
-
+    model_ptr->Movement(movement, 'z');
 }
 
 void controller::rotate_model_x(float angle)
 {
-
+    model_ptr->Rot(angle, 'x');
 }
 
 void controller::rotate_model_y(float angle)
 {
-
+    model_ptr->Rot(angle, 'y');
 }
 
 void controller::rotate_model_z(float angle)
 {
-
+    model_ptr->Rot(angle, 'z');
 }
 
 void controller::save_settings()
@@ -243,7 +242,7 @@ void controller::load_settings()
 }
 
 controller_facade::controller_facade(QObject *parent) : controller(parent) {
-    // Здесь можно добавить код инициализации, если нужно
+
 }
 
 controller::controller(QObject *parent) : QObject(parent) {
@@ -256,7 +255,6 @@ void controller::setOGLwidget(display *display)
 }
 
 controller::controller() : QObject(nullptr) {
-    // Реализация для конструктора без параметров
 }
 
 }

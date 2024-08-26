@@ -145,6 +145,7 @@ class controller_facade : public controller
 public:
     explicit controller_facade(QObject *parent = nullptr);
     using controller::load_file;
+    using controller::set_model_scale;
 
 public slots:
     /**

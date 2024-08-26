@@ -38,3 +38,8 @@ void interactions::on_pushButton_rotate_clicked()
 }
 
 }
+
+void s21::interactions::on_doubleSpinBox_scale_valueChanged(double arg1)
+{
+    emit scale(arg1);
+}
