@@ -25,6 +25,8 @@
 
 class display : public QOpenGLWidget, public s21::IObserver {
 
+Q_OBJECT
+
 private:
  s21::Subject* subject = nullptr;
   /* общее число наблюдателей */
@@ -32,8 +34,6 @@ private:
   /* номер конкретного наблюдателя */
   int number;
 
-
-  Q_OBJECT
  private:
   double xRot = 0, yRot = 0, zRot = 0;
   double scale = 0;
@@ -66,16 +66,13 @@ private:
   display(QWidget *parent);
   std::shared_ptr<s21::ProductModel> model_ptr = nullptr;
 
-  void openFile(char *filename, int fileStatus);
-  void move_model(double a, char axis);
-  void rot_model(double angle, char axis);
-  void scale_model(double a);
-
-
  public:
 
   virtual ~display() = default;
 
+  /**
+   * @brief Метод добавляющий объект наблюдения
+   */
   void Add(s21::Subject* subject);
 
   /**

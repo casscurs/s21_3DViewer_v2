@@ -5,6 +5,7 @@ int display::static_number = 0;
 
 display::display(QWidget *parent) : QOpenGLWidget(parent) {}
 
+
 void display::Add(s21::Subject* subject){
   this->subject = subject;
   this->subject->Attach(this);
@@ -116,35 +117,4 @@ void display::drawCoordinateAxes() {
   glVertex3d(0.0, 0.0, -2.0);
   glVertex3d(0.0, 0.0, 2.0);
   glEnd();
-}
-
-void display::openFile(char *filename, int fileStatus) {
-  //  if (fileStatus != 0) res_free(&syst);
-  //  flag = obj_counter(filename, &syst);
-  //  flag = matrix_fill(filename, &syst);
-  //  if (syst.vert.amountVert == 0) flag = -1;
-  //  if (flag == 0) {
-  //    center_frames(&syst);
-  //    resize_frames(&syst, 0.5);
-  //    update();
-  //  }
-}
-
-void display::move_model(double a, char axis) {
-  //  movement(&syst, a, axis);
-  update();
-}
-
-void display::rot_model(double angle, char axis) {
-  //  rot(&syst, angle, axis);
-  update();
-}
-
-void display::scale_model(double a) {
-  if (a < 0) {
-    a = -a;
-    a = 1.0 / a;
-  }
-  //  resize_frames(&syst, a);
-  update();
 }

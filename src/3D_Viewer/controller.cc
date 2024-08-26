@@ -11,22 +11,23 @@ void controller::load_file()
 
   try{
     build.CreateModel();
+
+    model_ptr = build.GetProductModel();
+
+    std::cout << "boba";
+    widget->model_ptr = model_ptr;
+
+    widget->flag = 1;
+    widget->Add(&(*model_ptr));
+    model_ptr->Attach(widget);
+
+    widget->model_ptr->CenterFrames();
+    widget->model_ptr->ResizeFrames(0.5);
   }
   catch(...){
     // Куда вывод?
-    std::cout << "File exception";
+    std::cout << "File exception"<< filename;
   }
-
-  model_ptr = build.GetProductModel();
-
-  widget->model_ptr = model_ptr;
-  widget->flag = 1;
-  widget->model_ptr->CenterFrames();
-  widget->model_ptr->ResizeFrames(0.5);
-
-  model_ptr->Attach(widget);
-  model_ptr->Notify();
-
 }
 
 void controller::set_central_projection()
@@ -109,12 +110,12 @@ void controller::set_background_color_rgb(float red, float green, float blue)
 
 void controller::set_model_scale(float scale)
 {
-
+    model_ptr->ResizeFrames(scale);
 }
 
 void controller::move_model_x(float movement)
 {
-
+    model_ptr->Movement(movement, 'x');
 }
 
 void controller::move_model_y(float movement)
