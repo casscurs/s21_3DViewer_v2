@@ -52,7 +52,7 @@ class ProductModel : public Subject {
    * @param angle величина угла поворота
    * @param flag по какой координате поворот
    */
-  void Rot(const double angle, const char flag) noexcept;
+  void Rot(double angle, const char flag) noexcept;
 };
 
 }  // namespace s21

@@ -230,11 +230,11 @@ public slots:
      */
     inline void rotate_model(int axis, float angle){
         if(axis == 0){
-            move_model_x(angle);
+            rotate_model_x(angle);
         } else if(axis == 1){
-            move_model_y(angle);
+            rotate_model_y(angle);
         } else if(axis == 2){
-            move_model_z(angle);
+            rotate_model_z(angle);
         }
     }
 };

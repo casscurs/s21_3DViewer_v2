@@ -53,9 +53,11 @@ void ProductModel::CenterFrames() noexcept {
 /*!
     \brief Поворот на угол по вокруг оси координат
 */
+
 void ProductModel::Rot(double angle,
                        const char flag) noexcept {  // поворот по оси flag
   angle = angle * M_PI / 180;
+
   for (int i = 0; i != matrix.get_rows(); ++i) {
     double tmp_x = matrix(i, 0);
     double tmp_y = matrix(i, 1);

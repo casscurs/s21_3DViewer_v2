@@ -139,7 +139,7 @@ void controller::rotate_model_x(float angle)
 
 void controller::rotate_model_y(float angle)
 {
-    model_ptr->Rot(angle, 'y');
+      model_ptr->Rot(angle, 'y');
 }
 
 void controller::rotate_model_z(float angle)
