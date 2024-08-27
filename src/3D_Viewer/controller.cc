@@ -14,9 +14,12 @@ void controller::load_file()
 
     model_ptr = build.GetProductModel();
 
+    QStringList list = file.split('/');
     widget->model_ptr = model_ptr;
+    emit set_file(list.at(list.size()-1), model_ptr->matrix.get_rows(), model_ptr->facets.size());
+    load_settings();
 
-    widget->flag = 1;
+    widget->file = 1;
     widget->Add(&(*model_ptr));
     model_ptr->Attach(widget);
 
@@ -24,8 +27,7 @@ void controller::load_file()
     widget->model_ptr->ResizeFrames(0.5);
   }
   catch(...){
-    // Куда вывод?
-    std::cout << "File exception"<< filename;
+    emit set_file(QString("File error!"), 0, 0);
   }
 }
 
@@ -119,32 +121,38 @@ void controller::set_model_scale(float scale)
 
 void controller::move_model_x(float movement)
 {
-    model_ptr->Movement(movement, 'x');
+    if(model_ptr)
+        model_ptr->Movement(movement, 'x');
 }
 
 void controller::move_model_y(float movement)
 {
-    model_ptr->Movement(movement, 'y');
+    if(model_ptr)
+        model_ptr->Movement(movement, 'y');
 }
 
 void controller::move_model_z(float movement)
 {
-    model_ptr->Movement(movement, 'z');
+    if(model_ptr)
+        model_ptr->Movement(movement, 'z');
 }
 
 void controller::rotate_model_x(float angle)
 {
-    model_ptr->Rot(angle, 'x');
+    if(model_ptr)
+        model_ptr->Rot(angle, 'x');
 }
 
 void controller::rotate_model_y(float angle)
 {
-      model_ptr->Rot(angle, 'y');
+    if(model_ptr)
+        model_ptr->Rot(angle, 'y');
 }
 
 void controller::rotate_model_z(float angle)
 {
-    model_ptr->Rot(angle, 'z');
+    if(model_ptr)
+        model_ptr->Rot(angle, 'z');
 }
 
 void controller::save_settings()

@@ -76,6 +76,7 @@ private slots:
 private:
     Ui::preferences *ui;
     QVector3D rgb_color(int index);
+    size_t str_color(QVector3D rgb_color);
 };
 
 }

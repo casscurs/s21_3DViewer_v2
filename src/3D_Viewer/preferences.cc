@@ -56,13 +56,19 @@ void preferences::set_settings(int v_t, int e_t, int proj, float v_s, float e_s,
     ui->spinBox_greenVert->setValue(v_c.y());
     ui->spinBox_blueVert->setValue(v_c.z());
 
+    ui->comboBox_colorVert->setCurrentIndex(str_color(v_c));
+
     ui->spinBox_redEdge->setValue(e_c.x());
     ui->spinBox_greenEdge->setValue(e_c.y());
     ui->spinBox_blueEdge->setValue(e_c.z());
 
+    ui->comboBox_colorEdge->setCurrentIndex(str_color(e_c));
+
     ui->spinBox_redBack->setValue(b_c.x());
     ui->spinBox_greenBack->setValue(b_c.y());
     ui->spinBox_blueBack->setValue(b_c.z());
+
+    ui->comboBox_colorBack->setCurrentIndex(str_color(b_c));
 }
 
 void preferences::on_radioButton_parallel_proj_clicked()
@@ -191,6 +197,20 @@ QVector3D preferences::rgb_color(int index)
         return QVector3D(0, 255, 0);
     else
         return QVector3D(255, 255, 255);
+}
+
+size_t preferences::str_color(QVector3D rgb_color)
+{
+    if(rgb_color.x() == 0 && rgb_color.y() == 0 && rgb_color.z() == 255)
+        return 4;
+    else if(rgb_color.x() == 0 && rgb_color.y() == 0 && rgb_color.z() == 0)
+        return 1;
+    else if(rgb_color.x() == 255 && rgb_color.y() == 0 && rgb_color.z() == 0)
+        return 2;
+    else if(rgb_color.x() == 0 && rgb_color.y() == 255 && rgb_color.z() == 0)
+        return 3;
+    else
+        return 0;
 }
 
 }

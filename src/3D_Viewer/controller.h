@@ -129,6 +129,7 @@ protected:
 signals:
     void set_settings(int v_t, int e_t, int proj, float v_s, float e_s,
                       QVector3D v_c, QVector3D e_c, QVector3D b_c);
+    void set_file(QString filename, size_t vert_count, size_t face_count);
 
 private:
     display *widget = nullptr;
@@ -146,6 +147,8 @@ public:
     explicit controller_facade(QObject *parent = nullptr);
     using controller::load_file;
     using controller::set_model_scale;
+    using controller::load_settings;
+    using controller::save_settings;
 
 public slots:
     /**

@@ -33,6 +33,9 @@ class MainWindow : public QMainWindow {
   QString file = 0;
   int fileStatus = 0;
 
+ public slots:
+  void set_file(QString filename, size_t vert_count, size_t face_count);
+
  private slots:
   void on_pushButton_screen_clicked();
   void on_pushButton_gif_clicked();
@@ -56,8 +59,6 @@ private:
   s21::preferences *preferences_dialog = new s21::preferences(this);
   s21::interactions *interactions_dialog = new s21::interactions(this);
 
- signals:
-  void pushButton_openFile_clicked();
 };
 
 }

@@ -61,7 +61,7 @@ private:
   float vert_size = 0.5;
   int projection = PARALLEL;
 
-  int flag = 0;
+  bool file = 0;
 
   display(QWidget *parent);
   std::shared_ptr<s21::ProductModel> model_ptr = nullptr;

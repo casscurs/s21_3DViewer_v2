@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>541</width>
+    <width>565</width>
     <height>580</height>
    </rect>
   </property>
@@ -54,6 +54,7 @@
           </property>
           <property name="font">
            <font>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -96,6 +97,12 @@ QPushButton:pressed {
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_5">
+          <property name="spacing">
+           <number>6</number>
+          </property>
+          <property name="sizeConstraint">
+           <enum>QLayout::SetMaximumSize</enum>
+          </property>
           <item>
            <widget class="QLabel" name="label_filename_2">
             <property name="styleSheet">
@@ -117,6 +124,7 @@ QPushButton:pressed {
             <property name="font">
              <font>
               <pointsize>-1</pointsize>
+              <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
@@ -153,6 +161,7 @@ font-size: 16px</string>
             </property>
             <property name="font">
              <font>
+              <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
@@ -188,6 +197,7 @@ font-size: 16px</string>
             </property>
             <property name="font">
              <font>
+              <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>

@@ -10,20 +10,27 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), controller(new controller_facade(this)) {
   ui->setupUi(this);
 
-  load_settings();
+  timer = new QTimer(0);
 
   controller->setOGLwidget(ui->openGLWidget);
   connect(this->controller, &controller_facade::set_settings, preferences_dialog, &preferences::set_settings);
+  connect(this->controller, &controller_facade::set_file, this, &MainWindow::set_file);
   connect(this->ui->pushButton_openFile, &QPushButton::clicked, this->controller, &controller_facade::load_file);
-
-  timer = new QTimer(0);
+  connect(this->timer, &QTimer::timeout, this, &MainWindow::timerRun);
 }
 
 MainWindow::~MainWindow() {
   delete preferences_dialog;
   delete interactions_dialog;
-  save_settings();
+  controller->save_settings();
   delete ui;
+}
+
+void MainWindow::set_file(QString filename, size_t vert_count, size_t face_count)
+{
+    ui->label_filename->setText(filename);
+    ui->label_vert->setText(QString("%1").arg(vert_count));
+    ui->label_face->setText(QString("%1").arg(face_count));
 }
 
 void MainWindow::save_settings() {
@@ -124,11 +131,11 @@ void MainWindow::load_settings() {
 }
 
 void MainWindow::on_pushButton_screen_clicked() {
-//  QString screen_name =
-//      QFileDialog::getSaveFileName(this, "Save screen", "", "*.jpeg *.bmp");
-//  if (!screen_name.isEmpty()) {
-//    ui->widget->grab().save(screen_name);
-//  }
+  QString screen_name =
+      QFileDialog::getSaveFileName(this, "Save screen", "", "*.jpeg *.bmp");
+  if (!screen_name.isEmpty()) {
+    ui->openGLWidget->grab().save(screen_name);
+  }
 }
 
 void MainWindow::on_pushButton_gif_clicked() {
@@ -138,14 +145,14 @@ void MainWindow::on_pushButton_gif_clicked() {
 }
 
 void MainWindow::timerRun() {
-//  ui->horizontalSlider_timer->setSliderPosition(count * 10);
-//  if (count <= 10.0) {
-//    gif.push_back(ui->widget->grab().toImage());
-//    count += 0.1;
-//  } else {
-//    makeGIF();
-//    timer->stop();
-//  }
+  ui->horizontalSlider_timer->setSliderPosition(count * 10);
+  if (count <= 10.0) {
+    gif.push_back(ui->openGLWidget->grab().toImage());
+    count += 0.1;
+  } else {
+    makeGIF();
+    timer->stop();
+  }
 }
 
 void MainWindow::makeGIF() {

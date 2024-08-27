@@ -39,7 +39,7 @@ void display::paintGL() {
     glFrustum(-1, 1, -1, 1, 2, 12.5);
     glTranslated(0, 0, -2.5);
   }
-  if (flag == 1) {
+  if (file) {
     /* Цвет фона */
     glClearColor(back_color.x() / 255.0f, back_color.y() / 255.0f, back_color.z() / 255.0f, 0);
     /* Очистка буфера цвета в каждом прогоне */
