@@ -44,6 +44,10 @@ void display::paintGL() {
     /* Очистка буфера цвета в каждом прогоне */
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+
+    glLineWidth(edges_size);
+    drawCoordinateAxes();
+
     if (edges_type == DOTTED) {
       /* пунктир */
       glEnable(GL_LINE_STIPPLE);
@@ -52,8 +56,7 @@ void display::paintGL() {
     } else if (edges_type == SOLID) {
       glDisable(GL_LINE_STIPPLE);
     }
-    glLineWidth(edges_size);
-    drawCoordinateAxes();
+
     glColor3d(edge_color.x() / 255.0f, edge_color.y() / 255.0f,
               edge_color.z() / 255.0f);
 
@@ -77,12 +80,14 @@ void display::paintGL() {
               vert_color.z() / 255.0f);
     glPointSize(vert_size);  // размер элементов
 
-    glBegin(GL_POINTS);
-    for (int i = 0; i < model_ptr->matrix.get_rows(); ++i) {
-      glVertex3d(model_ptr->matrix(i, 0), model_ptr->matrix(i, 1),
-                 model_ptr->matrix(i, 2));
+    if(vert_type != 0){
+        glBegin(GL_POINTS);
+        for (int i = 0; i < model_ptr->matrix.get_rows(); ++i) {
+          glVertex3d(model_ptr->matrix(i, 0), model_ptr->matrix(i, 1),
+                     model_ptr->matrix(i, 2));
+        }
+        glEnd();
     }
-    glEnd();
   }
 }
 
@@ -96,6 +101,7 @@ void display::mouseMoveEvent(QMouseEvent *mo) {
 
 void display::drawCoordinateAxes() {
   /* Ось X - Красная */
+  glDisable(GL_LINE_STIPPLE);
   glColor3d(2.0, 0.0, 0.0);
   glBegin(GL_LINES);
   glVertex3d(-2.0, 0.0, 0.0);

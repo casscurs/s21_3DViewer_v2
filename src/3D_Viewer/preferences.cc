@@ -90,6 +90,9 @@ void preferences::on_doubleSpinBox_edgeSize_valueChanged(double arg1) {
 
 void preferences::on_comboBox_colorVert_currentIndexChanged(int index) {
   emit color(0, rgb_color(index));
+  ui->spinBox_redVert->setValue(rgb_color(index).x());
+  ui->spinBox_greenVert->setValue(rgb_color(index).y());
+  ui->spinBox_blueVert->setValue(rgb_color(index).z());
 }
 
 void preferences::on_spinBox_redVert_valueChanged(int arg1) {
@@ -112,6 +115,9 @@ void preferences::on_spinBox_blueVert_valueChanged(int arg1) {
 
 void preferences::on_comboBox_colorEdge_currentIndexChanged(int index) {
   emit color(1, rgb_color(index));
+  ui->spinBox_redEdge->setValue(rgb_color(index).x());
+  ui->spinBox_greenEdge->setValue(rgb_color(index).y());
+  ui->spinBox_blueEdge->setValue(rgb_color(index).z());
 }
 
 void preferences::on_spinBox_redEdge_valueChanged(int arg1) {
@@ -134,6 +140,9 @@ void preferences::on_spinBox_blueEdge_valueChanged(int arg1) {
 
 void preferences::on_comboBox_colorBack_currentIndexChanged(int index) {
   emit color(2, rgb_color(index));
+  ui->spinBox_redBack->setValue(rgb_color(index).x());
+  ui->spinBox_greenBack->setValue(rgb_color(index).y());
+  ui->spinBox_blueBack->setValue(rgb_color(index).z());
 }
 
 void preferences::on_spinBox_redBack_valueChanged(int arg1) {
