@@ -82,13 +82,12 @@ install: $(NAME)
 uninstall:
 	rm -rf build 
 
-dvi: $(DVI_TARGET)
-
-$(DVI_TARGET):
-	 rm -rf $(SRC_DIR)
-	 mkdir $(SRC_DIR)
-	 doxygen Doxyfile
-	 @mv html latex $(SRC_DIR)
+dvi:
+	rm -rf $(SRC_DIR)
+	mkdir -p $(SRC_DIR)
+	doxygen Doxyfile
+	@mv html latex $(SRC_DIR)
+	open documentation/html/index.html
 
 undvi:
 	@rm -rf $(SRC_DIR)
