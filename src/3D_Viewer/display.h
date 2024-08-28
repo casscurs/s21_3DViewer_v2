@@ -21,8 +21,9 @@
 #include "../Backend/model/s21_model.h"
 #include "../Backend/model/s21_observer.h"
 
-// ПОКРЫТЬ БРИФАМИ И ПРОВЕРИТЬ ПРИВАТНОСТЬ
-
+/**
+ * @brief Класс специализирующийся на отрисовке модели
+ */
 class display : public QOpenGLWidget, public s21::IObserver {
   Q_OBJECT
 
@@ -42,9 +43,21 @@ class display : public QOpenGLWidget, public s21::IObserver {
   void mousePressEvent(QMouseEvent *) override;
   void mouseMoveEvent(QMouseEvent *) override;
 
+  /**
+   * @brief Метод необходимый для создания активного окна
+   */
   void initializeGL() override;
+  /**
+   * @brief Метод меняющий область видимости окна при изменении размеров окна
+   */
   void resizeGL(int w, int h) override;
+  /**
+   * @brief Метод отрисовывающий модель
+   */
   void paintGL() override;
+  /**
+   * @brief Метод отрисовывающий координатные оси
+   */
   void drawCoordinateAxes();
 
  public:
