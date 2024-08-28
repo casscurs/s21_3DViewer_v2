@@ -244,3 +244,46 @@ TEST(Model, empty_file_test) {
 
   EXPECT_ANY_THROW(build.CreateModel());
 }
+
+TEST(Observer, Attach) {
+  s21::Subject subj;
+
+  class ConcreteObserver : public s21::IObserver {
+   public:
+    void Update() override {
+      std::cout << "ConcreteObserver: Updated!" << std::endl;
+    }
+  } obj;
+
+  subj.Attach(&obj);
+  EXPECT_EQ(1, subj.HowManyObserver());
+}
+
+TEST(Observer, Detach) {
+  s21::Subject subj;
+
+  class ConcreteObserver : public s21::IObserver {
+   public:
+    void Update() override {
+      std::cout << "ConcreteObserver: Updated!" << std::endl;
+    }
+  } obj;
+
+  subj.Attach(&obj);
+  subj.Detach(&obj);
+  EXPECT_EQ(0, subj.HowManyObserver());
+}
+
+TEST(Observer, Notify) {
+  s21::Subject subj;
+
+  class ConcreteObserver : public s21::IObserver {
+   public:
+    int i = 0;
+    void Update() override { i = 1; }
+  } obj;
+
+  subj.Attach(&obj);
+  subj.Notify();
+  EXPECT_EQ(1, obj.i);
+}

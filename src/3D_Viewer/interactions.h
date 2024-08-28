@@ -12,29 +12,28 @@ namespace s21 {
 /**
  * @brief класс диалогового окна действий с моделью
  */
-class interactions : public QDialog
-{
-    Q_OBJECT
+class interactions : public QDialog {
+  Q_OBJECT
 
-public:
-    explicit interactions(QWidget *parent = nullptr);
-    ~interactions();
+ public:
+  explicit interactions(QWidget *parent = nullptr);
+  ~interactions();
 
-private slots:
-    void on_pushButton_move_clicked();
+ private slots:
+  void on_pushButton_move_clicked();
 
-    void on_pushButton_rotate_clicked();
+  void on_pushButton_rotate_clicked();
 
-    void on_pushButton_scale_clicked();
+  void on_pushButton_scale_clicked();
 
-signals:
-    void move(int axis, float movement);
-    void rotate(int axis, float angle);
-    void scale(float scale);
+ signals:
+  void move(int axis, float movement);
+  void rotate(int axis, float angle);
+  void scale(float scale);
 
-private:
-    Ui::interactions *ui;
+ private:
+  Ui::interactions *ui;
 };
 
-}
-#endif // INTERACTIONS_H
+}  // namespace s21
+#endif  // INTERACTIONS_H

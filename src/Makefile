@@ -36,7 +36,7 @@ SRC_DIR = documentation
 DIST_DIR = dist/$(PROJECT_NAME)-$(VERSION)
 DIST_FILES = $(SRC_FILES) $(HEADER_FILES) $(CPP_FILES) $(CPP_HEADERS) $(TESTS_SRC) $(SRC_DIR)/html/index.html Makefile
 
-all : install matrix_lib_clean
+all : tests
 
 txt:
 	mv models/katana.txt models/katana.obj
@@ -47,7 +47,7 @@ txt:
 	mv Backend/tests/nenormal.txt Backend/tests/nenormal.obj
 	mv Backend/tests/normal.txt Backend/tests/normal.obj
 
-gcovr_report: clean add_coverage test
+gcovr_report: clean add_coverage tests
 	mkdir gcovr/
 	gcovr --html-details gcovr/report.details.html
 	rm -rf ./*.gc*
@@ -84,7 +84,7 @@ uninstall:
 
 dvi: $(DVI_TARGET)
 
-$(DVI_TARGET): $(TEXI_FILES)
+$(DVI_TARGET):
 	 rm -rf $(SRC_DIR)
 	 mkdir $(SRC_DIR)
 	 doxygen Doxyfile
@@ -106,7 +106,7 @@ distclean:
 
 clean : uninstall undvi distclean matrix_lib_clean
 	@echo "$(COLOR_TITLE)=== Cleaning ===$(COLOR_RESET)"
-	@rm -rf *.a *.o gcovr *.gcda *.gcno $(DEP_FILES) $(NAME) test
+	@rm -rf *.a *.o gcovr *.gcda *.gcno $(DEP_FILES) $(NAME) tests
 	@rm -rf ./Backend/model/model_tests/*.d ./Backend/model/model_tests/*.o ./Backend/model/model_tests/*.gcda ./Backend/model/model_tests/*.gcno
 	@rm -rf ./Backend/model/*.d ./Backend/model/*.o ./Backend/model/*.gcda ./Backend/model/*.gcno
 

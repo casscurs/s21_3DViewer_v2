@@ -71,39 +71,6 @@ class Subject : public ISubject {
   }
 };
 
-// /**
-//  * @brief Абстрактный класс наблюдателя
-//  */
-// class Observer : public IObserver {
-//  private:
-//   Subject& subject;
-//   /* общее число наблюдателей */
-//   static int static_number;
-//   /* номер конкретного наблюдателя */
-//   int number;
-
-//  public:
-//   Observer(Subject& subject) : subject(subject) {
-//     this->subject.Attach(this);
-//     ++Observer::static_number;
-//     this->number = Observer::static_number;
-//   }
-
-//   virtual ~Observer() {}
-
-//   /**
-//    * @brief Метод, который использует субъект для уведомления наблюдателя
-//    */
-//   void Update() override {
-//     // вызов методов перерисовки
-//   }
-
-//   /**
-//    * @brief Метод открепляющий наблядателя от субъекта наблюдения
-//    */
-//   void RemoveMeFromTheList() { subject.Detach(this); }
-// };
-
 }  // namespace s21
 
 #endif  // S21_OBSERVER_H

@@ -22,7 +22,7 @@ class BuilderFromObjFile : public Builder {
   const char *file_name = nullptr;
 
  public:
-  BuilderFromObjFile(const char *file_name) : file_name(file_name) {}
+  explicit BuilderFromObjFile(const char *file_name) : file_name(file_name) {}
 
   ~BuilderFromObjFile() = default;
 

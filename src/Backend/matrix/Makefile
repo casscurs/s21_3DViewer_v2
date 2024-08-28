@@ -16,8 +16,8 @@ TESTS_SRC = $(wildcard $(TESTS_DIR)*.cc)
 TESTS_HEADERS = $(wildcard $(TESTS_DIR)*.h)
 TESTS_OBJ = $(patsubst %.cc,%.o, $(TESTS_SRC))
 
-CC = g++
-CFLAGS = -std=c++17 -Wall -Wextra -Werror -pedantic -g -I /opt/homebrew/Cellar/googletest/1.14.0/include # -fsanitize=address,undefined,unreachable \
+CC = g++ -std=c++17
+CFLAGS = -Wall -Wextra -Werror -pedantic -g -I /opt/homebrew/Cellar/googletest/1.14.0/include # -fsanitize=address,undefined,unreachable \
 # -fno-sanitize-recover
 
 AR = ar rcs 

@@ -1,12 +1,10 @@
 #include "display.h"
 
-
 int display::static_number = 0;
 
 display::display(QWidget *parent) : QOpenGLWidget(parent) {}
 
-
-void display::Add(s21::Subject* subject){
+void display::Add(s21::Subject *subject) {
   this->subject = subject;
   this->subject->Attach(this);
   ++display::static_number;
@@ -41,12 +39,10 @@ void display::paintGL() {
   }
   if (file) {
     /* Цвет фона */
-    glClearColor(back_color.x() / 255.0f, back_color.y() / 255.0f, back_color.z() / 255.0f, 0);
+    glClearColor(back_color.x() / 255.0f, back_color.y() / 255.0f,
+                 back_color.z() / 255.0f, 0);
     /* Очистка буфера цвета в каждом прогоне */
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-            //  glRotated(xRot, 1, 0, 0);
-            //  glRotated(yRot, 0, 1, 0);
 
     if (edges_type == DOTTED) {
       /* пунктир */
@@ -58,7 +54,8 @@ void display::paintGL() {
     }
     glLineWidth(edges_size);
     drawCoordinateAxes();
-    glColor3d(edge_color.x() / 255.0f, edge_color.y() / 255.0f, edge_color.z() / 255.0f);
+    glColor3d(edge_color.x() / 255.0f, edge_color.y() / 255.0f,
+              edge_color.z() / 255.0f);
 
     for (size_t i = 0; i < model_ptr->facets.size(); ++i) {
       glBegin(GL_LINE_LOOP);
@@ -76,13 +73,14 @@ void display::paintGL() {
     else
       glDisable(GL_POINT_SMOOTH);
 
-    glColor3d(vert_color.x() / 255.0f, vert_color.y() / 255.0f, vert_color.z() / 255.0f);
-    glPointSize(vert_size);  //размер элементов
+    glColor3d(vert_color.x() / 255.0f, vert_color.y() / 255.0f,
+              vert_color.z() / 255.0f);
+    glPointSize(vert_size);  // размер элементов
 
     glBegin(GL_POINTS);
     for (int i = 0; i < model_ptr->matrix.get_rows(); ++i) {
       glVertex3d(model_ptr->matrix(i, 0), model_ptr->matrix(i, 1),
-                   model_ptr->matrix(i, 2));
+                 model_ptr->matrix(i, 2));
     }
     glEnd();
   }

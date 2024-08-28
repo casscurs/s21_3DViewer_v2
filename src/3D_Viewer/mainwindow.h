@@ -8,12 +8,12 @@
 #include <QtOpenGL/QtOpenGL>
 #include <QtOpenGLWidgets/QtOpenGLWidgets>
 
-#include "preferences.h"
-#include "interactions.h"
 #include "controller.h"
 #include "gifimage/qgifimage.h"
 #include "giflib/gif_lib.h"
 #include "giflib/gif_lib_private.h"
+#include "interactions.h"
+#include "preferences.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -41,14 +41,12 @@ class MainWindow : public QMainWindow {
   void on_pushButton_gif_clicked();
   void makeGIF();
   void timerRun();
-  void save_settings();
-  void load_settings();
 
   void on_actionView_preferences_triggered();
 
   void on_actionModel_interactions_triggered();
 
-private:
+ private:
   Ui::MainWindow *ui;
   QString file_name = "";
   QTimer *timer;
@@ -58,8 +56,7 @@ private:
   s21::controller_facade *controller;
   s21::preferences *preferences_dialog = new s21::preferences(this);
   s21::interactions *interactions_dialog = new s21::interactions(this);
-
 };
 
-}
+}  // namespace s21
 #endif  // MAINWINDOW_H

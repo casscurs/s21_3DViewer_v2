@@ -13,22 +13,21 @@
 
 #define GL_SILENCE_DEPRECATION
 #include <QTime>
+#include <QVector3D>
 #include <QWidget>
 #include <QtOpenGL>
 #include <QtOpenGLWidgets>
-#include <QVector3D>
-#include "../Backend/model/s21_observer.h"
-#include "../Backend/model/s21_model.h"
 
+#include "../Backend/model/s21_model.h"
+#include "../Backend/model/s21_observer.h"
 
 // ПОКРЫТЬ БРИФАМИ И ПРОВЕРИТЬ ПРИВАТНОСТЬ
 
 class display : public QOpenGLWidget, public s21::IObserver {
+  Q_OBJECT
 
-Q_OBJECT
-
-private:
- s21::Subject* subject = nullptr;
+ private:
+  s21::Subject *subject = nullptr;
   /* общее число наблюдателей */
   static int static_number;
   /* номер конкретного наблюдателя */
@@ -40,7 +39,6 @@ private:
   QPoint mPos;
   QTimer tmr;
 
-
   void mousePressEvent(QMouseEvent *) override;
   void mouseMoveEvent(QMouseEvent *) override;
 
@@ -50,7 +48,6 @@ private:
   void drawCoordinateAxes();
 
  public:
-
   QVector3D back_color = {0.0f, 0.0f, 0.0f};
   QVector3D vert_color = {255.0f, 255.0f, 255.0f};
   QVector3D edge_color = {255.0f, 255.0f, 255.0f};
@@ -67,26 +64,22 @@ private:
   std::shared_ptr<s21::ProductModel> model_ptr = nullptr;
 
  public:
-
   virtual ~display() = default;
 
   /**
    * @brief Метод добавляющий объект наблюдения
    */
-  void Add(s21::Subject* subject);
+  void Add(s21::Subject *subject);
 
   /**
    * @brief Метод, который использует субъект для уведомления наблюдателя
    */
-  void Update() override {
-    update();
-  }
+  void Update() override { update(); }
 
   /**
    * @brief Метод открепляющий наблядателя от субъекта наблюдения
    */
   void RemoveMeFromTheList() { subject->Detach(this); }
 };
-
 
 #endif  // DISPLAY_H
