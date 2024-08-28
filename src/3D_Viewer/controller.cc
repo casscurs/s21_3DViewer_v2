@@ -31,6 +31,12 @@ void controller::load_file() {
   }
 }
 
+void controller::reload_file()
+{
+    model_ptr.reset();
+    load_file();
+}
+
 void controller::set_central_projection() {
   widget->projection = CENTRAL;
   widget->update();

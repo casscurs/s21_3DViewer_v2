@@ -29,6 +29,10 @@ class controller : public QObject {
    * @brief загрузка файла и заполнение модели
    */
   void load_file();
+  /**
+   * @brief перезагрузка файла и заполнение модели
+   */
+  void reload_file();
 
  protected:
   /**
@@ -142,6 +146,7 @@ class controller_facade : public controller {
  public:
   explicit controller_facade(QObject *parent = nullptr);
   using controller::load_file;
+  using controller::reload_file;
   using controller::load_settings;
   using controller::save_settings;
   using controller::set_model_scale;

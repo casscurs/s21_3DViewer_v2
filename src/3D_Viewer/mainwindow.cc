@@ -23,6 +23,8 @@ MainWindow::MainWindow(QWidget *parent)
           &MainWindow::set_file);
   connect(this->ui->pushButton_openFile, &QPushButton::clicked,
           this->controller, &controller_facade::load_file);
+  connect(this->ui->pushButton_reload, &QPushButton::clicked,
+          this->controller, &controller_facade::reload_file);
   connect(this->timer, &QTimer::timeout, this, &MainWindow::timerRun);
 }
 
