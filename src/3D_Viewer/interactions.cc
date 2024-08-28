@@ -7,7 +7,6 @@ namespace s21 {
 interactions::interactions(QWidget *parent)
     : QDialog(parent), ui(new Ui::interactions) {
   ui->setupUi(this);
-  this->setFixedSize(234, 160);
   this->setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
 }
 
