@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>284</width>
-    <height>213</height>
+    <width>426</width>
+    <height>395</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>370</width>
+    <height>300</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Preferences</string>
@@ -27,6 +39,15 @@
       <layout class="QHBoxLayout" name="horizontalLayout_5">
        <item>
         <widget class="QRadioButton" name="radioButton_central_proj">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
          <property name="text">
           <string>Central</string>
          </property>
@@ -34,6 +55,15 @@
        </item>
        <item>
         <widget class="QRadioButton" name="radioButton_parallel_proj">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
          <property name="text">
           <string>Parallel</string>
          </property>
@@ -48,11 +78,20 @@
    </item>
    <item>
     <widget class="QTabWidget" name="tabWidget_settings">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>160</height>
+       <height>0</height>
       </size>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
      </property>
      <property name="currentIndex">
       <number>0</number>
@@ -73,6 +112,9 @@
          </item>
          <item>
           <widget class="QRadioButton" name="radioButton_typeVert_none">
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
            <property name="text">
             <string>none</string>
            </property>
@@ -83,6 +125,9 @@
          </item>
          <item>
           <widget class="QRadioButton" name="radioButton_typeVert_circle">
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
            <property name="text">
             <string>circle</string>
            </property>
@@ -90,6 +135,9 @@
          </item>
          <item>
           <widget class="QRadioButton" name="radioButton_typeVert_square">
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
            <property name="text">
             <string>square</string>
            </property>
@@ -212,6 +260,9 @@
           <layout class="QHBoxLayout" name="horizontalLayout_6">
            <item>
             <widget class="QRadioButton" name="radioButton_typeEdge_solid">
+             <property name="focusPolicy">
+              <enum>Qt::NoFocus</enum>
+             </property>
              <property name="text">
               <string>solid</string>
              </property>
@@ -222,6 +273,9 @@
            </item>
            <item>
             <widget class="QRadioButton" name="radioButton_typeEdge_dotted">
+             <property name="focusPolicy">
+              <enum>Qt::NoFocus</enum>
+             </property>
              <property name="text">
               <string>dotted</string>
              </property>
