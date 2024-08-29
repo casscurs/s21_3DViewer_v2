@@ -31,10 +31,9 @@ void controller::load_file() {
   }
 }
 
-void controller::reload_file()
-{
-    model_ptr.reset();
-    load_file();
+void controller::reload_file() {
+  model_ptr.reset();
+  load_file();
 }
 
 void controller::set_central_projection() {
@@ -104,7 +103,7 @@ void controller::set_background_color_rgb(float red, float green, float blue) {
 }
 
 void controller::set_model_scale(float scale) {
-  if (model_ptr){
+  if (model_ptr) {
     if (scale < 0) {
       scale = -scale;
       scale = 1.0 / scale;
@@ -112,7 +111,7 @@ void controller::set_model_scale(float scale) {
 
     model_ptr->Mult(scale);
   }
-  }
+}
 
 void controller::move_model_x(float movement) {
   if (model_ptr) model_ptr->Movement(movement, 'x');

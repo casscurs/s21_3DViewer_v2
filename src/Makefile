@@ -42,10 +42,10 @@ txt:
 	mv models/katana.txt models/katana.obj
 	mv models/pumpkin.txt models/pumpkin.obj
 	mv models/skull.txt models/skull.obj
-	mv Backend/tests/empty.txt Backend/tests/empty.obj
-	mv Backend/tests/error.txt Backend/tests/error.obj
-	mv Backend/tests/nenormal.txt Backend/tests/nenormal.obj
-	mv Backend/tests/normal.txt Backend/tests/normal.obj
+	mv Backend/model/model_tests/examples_for_tests/empty.txt Backend/model/model_tests/examples_for_tests/empty.obj
+	mv Backend/model/model_tests/examples_for_tests/error.txt Backend/model/model_tests/examples_for_tests/error.obj
+	mv Backend/model/model_tests/examples_for_tests/nenormal.txt Backend/model/model_tests/examples_for_tests/nenormal.obj
+	mv Backend/model/model_tests/examples_for_tests/normal.txt Backend/model/model_tests/examples_for_tests/normal.obj
 
 gcovr_report: clean add_coverage tests
 	mkdir gcovr/

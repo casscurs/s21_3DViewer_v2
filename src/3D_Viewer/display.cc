@@ -44,7 +44,6 @@ void display::paintGL() {
     /* Очистка буфера цвета в каждом прогоне */
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
     glLineWidth(edges_size);
     drawCoordinateAxes();
 
@@ -80,13 +79,13 @@ void display::paintGL() {
               vert_color.z() / 255.0f);
     glPointSize(vert_size);  // размер элементов
 
-    if(vert_type != 0){
-        glBegin(GL_POINTS);
-        for (int i = 0; i < model_ptr->matrix.get_rows(); ++i) {
-          glVertex3d(model_ptr->matrix(i, 0), model_ptr->matrix(i, 1),
-                     model_ptr->matrix(i, 2));
-        }
-        glEnd();
+    if (vert_type != 0) {
+      glBegin(GL_POINTS);
+      for (int i = 0; i < model_ptr->matrix.get_rows(); ++i) {
+        glVertex3d(model_ptr->matrix(i, 0), model_ptr->matrix(i, 1),
+                   model_ptr->matrix(i, 2));
+      }
+      glEnd();
     }
   }
 }
